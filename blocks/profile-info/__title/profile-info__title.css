@@ -8,3 +8,10 @@
   margin: 0;
   padding: 0;
 }
+@media (min-width: 670px) {
+  .profile-info__title {
+    text-align: left;
+    font-size: 42px;
+    line-height: 48px;
+  }
+}

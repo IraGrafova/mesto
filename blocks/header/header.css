@@ -1,5 +1,12 @@
 .header {
     min-height: 56px;
     border-bottom: 1px solid #545454;
-    min-width: 320px;
+    width: 100%;
+    max-width: 880px;
+}
+@media (min-width: 425px) {
+  .header {
+    width: 88%;
+    min-height: 118px;
+  }
 }

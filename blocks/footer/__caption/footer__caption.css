@@ -6,3 +6,10 @@
   color: #545454;
   margin-top: 48px;
 }
+@media (min-width: 1033px) {
+  .footer__caption {
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 70px;
+  }
+}

@@ -4,5 +4,10 @@
   align-items: center;
   margin-top: 26px;
   margin-bottom: 30px;
-  gap: 7px;
+  gap: 8px;
+}
+@media (min-width: 670px) {
+  .profile-info {
+    align-items: flex-start;
+  }
 }
