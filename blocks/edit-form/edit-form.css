@@ -7,11 +7,11 @@
   align-items: center;
   margin: 0 auto;
   position: relative;
-  top: 150px;
+  top: 123px;
 }
 @media (min-width: 1280px) {
   .edit-form {
     width: 430px;
-    top: 146px;
+    top: 195px;
   }
 }

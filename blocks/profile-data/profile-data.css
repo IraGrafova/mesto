@@ -4,8 +4,7 @@
   align-items: center;
 }
 @media (min-width: 670px) {
-.profile-data {
+  .profile-data {
     flex-direction: row;
-
-}
+  }
 }

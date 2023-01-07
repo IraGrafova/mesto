@@ -6,16 +6,18 @@
   margin-bottom: 20px;
   background-color: transparent;
   position: absolute;
-  top: 121px;
-  right: 155px;
+  top: -36px;
+  right: 0px;
+}
+.edit-form__close:hover {
+  opacity: 0.6;
 }
 @media (min-width: 1280px) {
   .edit-form__close {
     width: 32px;
     height: 32px;
     background-size: cover;
-    top: 121px;
-    right: 155px;
+    top: -40px;
+    right: -40px;
   }
 }
-

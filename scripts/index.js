@@ -23,8 +23,6 @@ const closePopupByClickOnOverlay = function(event) {
 }
 editButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
-
-
 popupElement.addEventListener('click', closePopupByClickOnOverlay);
 
 //функция сохранить
@@ -32,7 +30,6 @@ function handleFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent =  profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
-
   closePopup ();
 }
 formEdit.addEventListener('submit', handleFormSubmit);

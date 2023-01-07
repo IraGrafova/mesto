@@ -12,80 +12,121 @@
   </head>
   <body class="page">
     <header class="header">
-<img class="logo" src="./images/logo.svg" alt="Логотип Место">
+      <img class="logo" src="./images/logo.svg" alt="Логотип Место" />
     </header>
     <main class="content">
-        <section class="profile">
-          <div class="profile-data">
-          <img class="avatar" src="./images/Avatar.jpg" alt="Аватар пользователя">
-            <div class="profile-info">
-                <div class="profile-info__name">
-                  <h1 class="profile-info__title">Жак-Ив Кусто</h1>
-                  <button class="profile-info__edit-button button-opacity"></button>
-                </div>
-                <p class="profile-info__subtitle">Исследователь океана</p>
+      <section class="profile">
+        <div class="profile-data">
+          <img
+            class="avatar"
+            src="./images/Avatar.jpg"
+            alt="Аватар пользователя"
+          />
+          <div class="profile-info">
+            <div class="profile-info__name">
+              <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+              <button class="profile-info__edit-button"></button>
             </div>
+            <p class="profile-info__subtitle">Исследователь океана</p>
           </div>
-            <button class="add-button button-opacity"></button>
-        </section>
-<section class="snapshots">
-    <ul class="elements">
-        <li class="element">
-          <img class="element__picture" src="./images/Санкт-Петербург.jpg" alt="Санкт-Петербург">
-          <div class="element__label">
-            <h2 class="element__title">Санкт-Петербург</h2>
-            <button class="element__button-like button-opacity"></button>
-          </div>
-        <li class="element">
-            <img class="element__picture" src="./images/Ростов-на-Дону.jpg" alt="Ростов-на-Дону">
+        </div>
+        <button class="add-button"></button>
+      </section>
+      <section class="snapshots">
+        <ul class="elements">
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Санкт-Петербург.jpg"
+              alt="Санкт-Петербург"
+            />
+            <div class="element__label">
+              <h2 class="element__title">Санкт-Петербург</h2>
+              <button class="element__button-like"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Ростов-на-Дону.jpg"
+              alt="Ростов-на-Дону"
+            />
             <div class="element__label">
               <h2 class="element__title">Ростов-на-Дону</h2>
-              <button class="element__button-like button-opacity"></button>
+              <button class="element__button-like"></button>
             </div>
-        </li>
-        <li class="element">
-            <img class="element__picture" src="./images/Великий Новгород.jpg" alt="Великий Новгород">
+          </li>
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Великий_Новгород.jpg"
+              alt="Великий Новгород"
+            />
             <div class="element__label">
               <h2 class="element__title">Великий Новгород</h2>
-              <button class="element__button-like button-opacity"></button>
+              <button class="element__button-like"></button>
             </div>
-        </li>
-        <li class="element">
-            <img class="element__picture" src="./images/Выборг.jpg" alt="Выборг">
+          </li>
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Выборг.jpg"
+              alt="Выборг"
+            />
             <div class="element__label">
-            <h2 class="element__title">Выборг</h2>
-            <button class="element__button-like button-opacity"></button>
+              <h2 class="element__title">Выборг</h2>
+              <button class="element__button-like"></button>
             </div>
-        </li>
-        <li class="element">
-            <img class="element__picture" src="./images/Республика Карелия.jpg" alt="Республика Карелия">
+          </li>
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Республика_Карелия.jpg"
+              alt="Республика Карелия"
+            />
             <div class="element__label">
-            <h2 class="element__title">Республика Карелия</h2>
-            <button class="element__button-like button-opacity"></button>
+              <h2 class="element__title">Республика Карелия</h2>
+              <button class="element__button-like"></button>
             </div>
-        </li>
-        <li class="element">
-            <img class="element__picture" src="./images/Самарская область.jpg" alt="Самарская область">
+          </li>
+          <li class="element">
+            <img
+              class="element__picture"
+              src="./images/Самарская_область.jpg"
+              alt="Самарская область"
+            />
             <div class="element__label">
-            <h2 class="element__title">Самарская область</h2>
-            <button class="element__button-like button-opacity"></button>
+              <h2 class="element__title">Самарская область</h2>
+              <button class="element__button-like"></button>
             </div>
-        </li>
-    </ul>
-</section>
+          </li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-        <p class="footer__caption">© 2022 Mesto Russia</p>
+      <p class="footer__caption">© 2022 Mesto Russia</p>
     </footer>
     <section class="popup popup_is-closed">
-      <button class="edit-form__close button-opacity"></button>
       <form class="edit-form">
+        <button class="edit-form__close"></button>
         <h2 class="edit-form__title">Редактировать профиль</h2>
-        <input class="edit-form__profile" type="text" value="Жак-Ив Кусто" name="name" id="name">
-        <input class="edit-form__profile" type="text" value="Исследователь океана" name="job" id="job">
-        <button class="edit-form__save button-opacity">Сохранить</button>
-    </form>
-  </section>
-  <script src="./scripts/index.js"></script>
+        <input
+          class="edit-form__profile"
+          type="text"
+          value="Жак-Ив Кусто"
+          name="name"
+          id="name"
+        />
+        <input
+          class="edit-form__profile"
+          type="text"
+          value="Исследователь океана"
+          name="job"
+          id="job"
+        />
+        <button class="edit-form__save">Сохранить</button>
+      </form>
+    </section>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

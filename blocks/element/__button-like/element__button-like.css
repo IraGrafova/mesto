@@ -7,3 +7,10 @@
   object-fit: contain;
   width: 24px;
 }
+.element__button-like:hover {
+  opacity: 0.5;
+}
+.element__button-like:active {
+  opacity: 1;
+  background-image: url(../../../images/like-active.png);
+}
