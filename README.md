@@ -1,6 +1,6 @@
 # Проект: Место
 
-https://iragrafova.github.io/russian-travel/index.html
+https://iragrafova.github.io/mesto/
 
 ### Обзор
 * JavaScript
