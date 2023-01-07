@@ -1,0 +1,21 @@
+.edit-form__close {
+  background-image: url(../../../images/Close\ Icon.png);
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: transparent;
+  position: absolute;
+  top: 121px;
+  right: 155px;
+}
+@media (min-width: 1280px) {
+  .edit-form__close {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+    top: 121px;
+    right: 155px;
+  }
+}
+

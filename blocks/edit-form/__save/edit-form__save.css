@@ -1,0 +1,26 @@
+.edit-form__save {
+  margin-top: 45px;
+  background-color: #fff;
+  border: none;
+  background: #000000;
+  border-radius: 2px;
+  color: #fff;
+  width: 238px;
+  height: 46px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
+  margin-bottom: 25px;
+}
+@media (min-width: 1280px) {
+  .edit-form__save {
+    width: 358px;
+    margin-top: 49px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 37px;
+  }
+}
