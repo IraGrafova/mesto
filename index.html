@@ -25,12 +25,12 @@
           <div class="profile-info">
             <div class="profile-info__name">
               <h1 class="profile-info__title">Жак-Ив Кусто</h1>
-              <button class="profile-info__edit-button"></button>
+              <button class="profile-info__edit-button" type="button"></button>
             </div>
             <p class="profile-info__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="add-button"></button>
+        <button class="add-button" type="button"></button>
       </section>
       <section class="snapshots">
         <ul class="elements">
@@ -42,7 +42,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Санкт-Петербург</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -53,7 +53,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Ростов-на-Дону</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -64,7 +64,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Великий Новгород</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -75,7 +75,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Выборг</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -86,7 +86,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Республика Карелия</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
           <li class="element">
@@ -97,7 +97,7 @@
             />
             <div class="element__label">
               <h2 class="element__title">Самарская область</h2>
-              <button class="element__button-like"></button>
+              <button class="element__button-like" type="button"></button>
             </div>
           </li>
         </ul>
@@ -106,26 +106,16 @@
     <footer class="footer">
       <p class="footer__caption">© 2022 Mesto Russia</p>
     </footer>
-    <section class="popup popup_is-closed">
-      <form class="edit-form">
-        <button class="edit-form__close"></button>
-        <h2 class="edit-form__title">Редактировать профиль</h2>
-        <input
-          class="edit-form__profile"
-          type="text"
-          value="Жак-Ив Кусто"
-          name="name"
-          id="name"
-        />
-        <input
-          class="edit-form__profile"
-          type="text"
-          value="Исследователь океана"
-          name="job"
-          id="job"
-        />
-        <button class="edit-form__save">Сохранить</button>
-      </form>
+    <section class="popup">
+      <div class="popup__form">
+        <button class="edit-form__close" type="button"></button>
+        <form class="edit-form" name="edit-form">
+          <h2 class="edit-form__title">Редактировать профиль</h2>
+          <input class="edit-form__profile" type="text" name="name" id="name" />
+          <input class="edit-form__profile" type="text" name="job" id="job" />
+          <button class="edit-form__save" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
     <script src="./scripts/index.js"></script>
   </body>

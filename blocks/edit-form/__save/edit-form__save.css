@@ -5,14 +5,15 @@
   background: #000000;
   border-radius: 2px;
   color: #fff;
-  width: 238px;
+  width: 84%;
   height: 46px;
-  font-family: "Inter";
+  font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-size: 14px;
   line-height: 17px;
   padding: 0;
   margin-bottom: 25px;
+  cursor: pointer;
 }
 .edit-form__save:hover {
   opacity: 0.8;

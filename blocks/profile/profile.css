@@ -10,7 +10,7 @@
   .profile {
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 35px;
-    margin-bottom: 44px;
+    margin-top: 32px;
+    margin-bottom: 40px;
   }
 }

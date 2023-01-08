@@ -5,11 +5,15 @@
   line-height: 17px;
   margin: 0;
   padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 282px;
 }
-@media (min-width: 670px) {
+@media (min-width: 1280px) {
   .profile-info__subtitle {
-    margin-left: 30px;
     font-size: 18px;
     line-height: 22px;
+    max-width: 500px;
   }
 }

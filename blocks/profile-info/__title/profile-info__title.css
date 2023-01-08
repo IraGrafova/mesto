@@ -7,11 +7,16 @@
   text-align: center;
   margin: 0;
   padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 200px;
 }
-@media (min-width: 670px) {
+@media (min-width: 1280px) {
   .profile-info__title {
     text-align: left;
     font-size: 42px;
     line-height: 48px;
+    max-width: 400px;
   }
 }

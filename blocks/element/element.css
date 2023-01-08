@@ -7,6 +7,6 @@
 }
 @media (min-width: 1033px) {
   .element {
-    width: 282px;
+    max-width: 282px;
   }
 }

@@ -1,17 +1,7 @@
 .edit-form {
-  width: 282px;
-  background-color: #fff;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  position: relative;
-  top: 123px;
+  width: 100%;
 }
-@media (min-width: 1280px) {
-  .edit-form {
-    width: 430px;
-    top: 195px;
-  }
-}
+

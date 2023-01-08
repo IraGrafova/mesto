@@ -11,10 +11,12 @@ let profileJob = document.querySelector('.profile-info__subtitle');
 
 //функция закрытия попапа
 const openPopup = function() {
-  popupElement.classList.remove('popup_is-closed');
+  popupElement.classList.add('popup_is-opened');
+  profileNameInput.value = profileName.textContent;
+  profileJobInput.value = profileJob.textContent;
 }
 const closePopup = function() {
-  popupElement.classList.add('popup_is-closed');
+  popupElement.classList.remove('popup_is-opened');
 }
 const closePopupByClickOnOverlay = function(event) {
   if(event.target === event.currentTarget) {

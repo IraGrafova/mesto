@@ -11,7 +11,6 @@
 }
 @media (min-width: 1033px) {
   .elements {
-    width: 880px;
-    row-gap: 20px;
+    max-width: 880px;
   }
 }
