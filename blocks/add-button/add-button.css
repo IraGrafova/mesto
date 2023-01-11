@@ -18,5 +18,6 @@
   .add-button {
     width: 150px;
     height: 50px;
+    background-size: 22px;
   }
 }
