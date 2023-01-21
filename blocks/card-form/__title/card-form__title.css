@@ -1,4 +1,4 @@
-.edit-form__title {
+.card-form__title {
   font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -11,7 +11,7 @@
   max-width: 358px;
 }
 @media (min-width: 1280px) {
-  .edit-form__title {
+  .card-form__title {
     align-self: flex-start;
     margin-left: 36px;
     font-size: 24px;

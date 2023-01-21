@@ -1,4 +1,4 @@
-.edit-form__profile {
+.card-form__field {
   margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -11,18 +11,18 @@
   width: 84%;
   max-width: 358px;
 }
-.edit-form__profile:last-of-type {
+.card-form__field:last-of-type {
   margin-bottom: 0;
 }
-.edit-form__profile:focus {
+.card-form__field:focus {
   outline: none;
   border: 1px solid lightblue;
 }
-.edit-form__profile::placeholder {
+.card-form__field::placeholder {
   color: black;
 }
 @media (min-width: 1280px) {
-  .edit-form__profile {
+  .card-form__field {
     line-height: 28px;
     margin-bottom: 25px;
   }

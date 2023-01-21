@@ -1,4 +1,4 @@
-.edit-form__save {
+.card-form__save {
   margin-top: 45px;
   background-color: #fff;
   border: none;
@@ -15,11 +15,11 @@
   margin-bottom: 25px;
   cursor: pointer;
 }
-.edit-form__save:hover {
+.card-form__save:hover {
   opacity: 0.8;
 }
 @media (min-width: 1280px) {
-  .edit-form__save {
+  .card-form__save {
     width: 358px;
     margin-top: 49px;
     height: 50px;
