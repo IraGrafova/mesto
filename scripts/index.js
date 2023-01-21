@@ -3,7 +3,7 @@
 const popupElement = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddPicture = document.querySelector('.popup_type_add-picture');
-const popupOpenPicture = document.querySelector('.popup_type_open-picture');
+const popupOpenPicture = document.querySelectorAll('.popup_type_open-picture');
 //объявляем кнопки закрытия попапов
 const closePopupEditProfile = document.querySelector('.popup__close_type_edit-profile');
 const closePopupAddPicture = document.querySelector('.popup__close_type_add-picture');
@@ -85,3 +85,9 @@ function handleFormSubmit (evt) {
   closePopup ();
 }
 formEdit.addEventListener('submit', handleFormSubmit);
+
+
+//попытка добавления карточки на страницу
+const template = document.querySelector('#to-do-element');
+const addCard = template.querySelector('.element');
+
