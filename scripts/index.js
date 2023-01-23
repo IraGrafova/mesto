@@ -9,7 +9,7 @@ const buttonPicture = document.querySelector('.button-image');
 
 
 const formEdit = popupElement.querySelector('.card-form');
-const popupClose = popupElement.querySelector('.popup__close');
+
 //объявляем 3 кнопки работы с попапами
 const editButton = document.querySelector('.profile-info__edit-button');
 const addPictureButton = document.querySelector('.add-button');
@@ -48,6 +48,7 @@ addPictureButton.addEventListener('click', function () {
 
 
 //объявляем кнопки закрытия попапов
+const popupClose = popupElement.querySelector('.popup__close');
 const closePopupEditProfile = document.querySelector('.popup__close_type_edit-profile');
 const closePopupAddPicture = document.querySelector('.popup__close_type_add-picture');
 const closePopupOpenPicture = document.querySelector('.popup__close_type_open-picture');
@@ -57,7 +58,7 @@ const closePopup = function (buttonClose) {
 }
 const closePopupByClickOnOverlay = function(event) {
   if(event.target === event.currentTarget) {
-    closePopup();
+    closePopup(popupElement);
   }
 }
 
@@ -83,10 +84,6 @@ function handleFormSubmit (evt) {
   closePopup ();
 }
 formEdit.addEventListener('submit', handleFormSubmit);
-
-
-
-
 
 
 
@@ -127,6 +124,7 @@ const initialCards = [
 const createCard = (card) => {
   const template = `
     <li class="element">
+      <button class="element__trash"></button>
       <button class="button-image">
        <img class="element__picture" src="" alt=""/>
       </button>
@@ -166,27 +164,8 @@ const cardFormSubmit = (evt) => {
   //inputPlace.value = '';
 
 
-  closePopup ();
+  closePopup (popupElement);
 }
-
-
-
 
 formCard.addEventListener('submit', cardFormSubmit);
 
-
-
-//не получилось
-//let placeNameInput = popupElement.querySelector('#place');
-//let placeLinkInput = popupElement.querySelector('#place-link');
-//let placeName = template.querySelector('element__title');
-//let placePicture = template.querySelector('element__picture');
-
-//function saveNewCard (evt) {
- // evt.preventDefault();
- // placeName.textContent =  placeNameInput.value;
-  //placePicture.src = placeLinkInput.value;
-  //closePopup ();
-//}
-//const cardSave = document.querySelector('.card-form__save');
-//cardSave.addEventListener('submit', createCard);
