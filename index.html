@@ -34,7 +34,7 @@
       </section>
       <section class="snapshots">
         <ul class="elements">
-          <li class="element">
+         <!-- <li class="element">
             <button class="button-image">
               <img
                 class="element__picture"
@@ -111,7 +111,7 @@
               <h2 class="element__title">Самарская область</h2>
               <button class="element__button-like" type="button"></button>
             </div>
-          </li>
+          </li>-->
         </ul>
       </section>
     </main>
@@ -132,11 +132,11 @@
     <div class="popup popup_type_add-picture">
       <div class="popup__form">
         <button class="popup__close popup__close_type_add-picture" type="button"></button>
-        <form class="card-form" name="create-form">
+        <form class="card-form" name="create-form" id="form-card">
           <h2 class="card-form__title">Новое место</h2>
           <input class="card-form__field" type="text" name="place" id="place" placeholder="Название"/>
           <input class="card-form__field" type="text" name="place-link" id="place-link" placeholder="Ссылка на картинку"/>
-          <button class="card-form__save" type="submit">Создать</button>
+          <button class="card-form__save" type="submit" id="create-card">Создать</button>
         </form>
       </div>
     </div>
@@ -148,10 +148,10 @@
         </figure>
       </div>
     </div>
-    <template id="to-do-element">
+   <template id="to-do-element">
       <li class="element">
         <button class="button-image">
-          <img class="element__picture"/>
+          <img class="element__picture" src="" alt=""/>
         </button>
         <div class="element__label">
           <h2 class="element__title"></h2>
