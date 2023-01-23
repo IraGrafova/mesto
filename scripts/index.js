@@ -48,7 +48,7 @@ addPictureButton.addEventListener('click', function () {
 
 
 //объявляем кнопки закрытия попапов
-const popupClose = popupElement.querySelector('.popup__close');
+//const popupClose = popupElement.querySelector('.popup__close');
 const closePopupEditProfile = document.querySelector('.popup__close_type_edit-profile');
 const closePopupAddPicture = document.querySelector('.popup__close_type_add-picture');
 const closePopupOpenPicture = document.querySelector('.popup__close_type_open-picture');
@@ -73,7 +73,7 @@ closePopupAddPicture.addEventListener('click', function () {
  // closePopup(popupOpenPicture);
 //});
 
-popupClose.addEventListener('click', closePopup);
+
 popupElement.addEventListener('click', closePopupByClickOnOverlay);
 
 //функция сохранить
@@ -164,8 +164,15 @@ const cardFormSubmit = (evt) => {
   //inputPlace.value = '';
 
 
-  closePopup (popupElement);
+  closePopup ();
 }
 
 formCard.addEventListener('submit', cardFormSubmit);
 
+// //при нажатии на урну - удалить карточку
+// const trash = document.querySelector('.element__trash');
+// const isTrashCardActive = initialCards.some(item => {
+//   item.addEventListener('click', function () {
+//     initialCards.splice(item)
+//   })
+// })
