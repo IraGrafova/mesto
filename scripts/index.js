@@ -96,7 +96,7 @@ formEdit.addEventListener('submit', handleFormSubmit);
 
 const elementsList = document.querySelector('.elements');
 const template = document.querySelector('#to-do-element').content;
-const popupForm = document.querySelector('.popup__form')
+const popupForm = document.querySelector('.popup__form');
 
 const initialCards = [
   {
@@ -134,7 +134,7 @@ const createCard = (card) => {
       </button>
       <div class="element__label">
         <h2 class="element__title"></h2>
-        <button class="element__button-like" type="button"></button>
+        <button class="element__button-like element__button-like_active" type="button"></button>
       </div>
     </li>
   `;
@@ -143,7 +143,6 @@ const createCard = (card) => {
   container.querySelector('.element__picture').src = card.link;
   container.querySelector('.element__picture').alt = card.name;
   container.querySelector('.element__title').textContent = card.name;
-
 
   return container.firstElementChild;
 };
@@ -176,10 +175,23 @@ const cardFormSubmit = (evt) => {
 
 formCard.addEventListener('submit', cardFormSubmit);
 
-// //при нажатии на урну - удалить карточку
-// const trash = document.querySelector('.element__trash');
-// const isTrashCardActive = initialCards.some(item => {
-//   item.addEventListener('click', function () {
-//     initialCards.splice(item)
-//   })
-// })
+//объявляем кнопку лайк
+const likeButton = document.querySelector('.element__button-like');
+console.log(likeButton);
+//добавим обработчик
+const like = (evt) => {
+  evt.addEventListener ('click', () => {
+    likeButton.target.classList.toggle('element__button-like_active')
+});
+};
+
+
+//при нажатии на урну - удалить карточку
+const trash = document.querySelector('.element__trash'); //выбрали кнопку удаления
+// добавим обработчик
+trash.addEventListener('click',  () => {
+  const elementLi = trash.closest('.element');
+  elementLi.remove('element__trash');
+});
+
+
