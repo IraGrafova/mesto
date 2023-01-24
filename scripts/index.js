@@ -40,11 +40,17 @@ editButton.addEventListener('click', function () {
 addPictureButton.addEventListener('click', function () {
   openPopup(popupAddPicture);
 });
-//openPictureButton.addEventListener('click', function () {
-  //openPopup(popupOpenPicture);
-  //profileNameInput.value = profileName.textContent;
- //profileJobInput.value = profileJob.textContent;
-//});
+
+
+// пытаюсь передать в открытый попап src и текст
+openPictureButton.addEventListener('click', function () {
+  openPopup(popupOpenPicture);
+  document.querySelector('.popup__image').src = initialCards.link;
+  document.querySelector('.popup__image').alt = initialCards.name;
+  document.querySelector('.popup__caption').textContent = initialCards.name;
+//   profileNameInput.value = profileName.textContent;
+//  profileJobInput.value = profileJob.textContent;
+});
 
 
 //объявляем кнопки закрытия попапов
@@ -70,9 +76,9 @@ closePopupEditProfile.addEventListener('click', function () {
 closePopupAddPicture.addEventListener('click', function () {
   closePopup(popupAddPicture);
 });
-//closePopupOpenPicture.addEventListener('click', function () {
- // closePopup(popupOpenPicture);
-//});
+closePopupOpenPicture.addEventListener('click', function () {
+ closePopup(popupOpenPicture);
+});
 
 
 // closePopupEditProfile.addEventListener('click', closePopupByClickOnOverlay);
