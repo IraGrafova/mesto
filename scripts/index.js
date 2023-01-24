@@ -56,11 +56,12 @@ const closePopupOpenPicture = document.querySelector('.popup__close_type_open-pi
 const closePopup = function (buttonClose) {
   buttonClose.classList.remove('popup_is-opened');
 }
-const closePopupByClickOnOverlay = function(event) {
-  if(event.target === event.currentTarget) {
-    closePopup(popupElement);
-  }
-}
+// const closePopupByClickOnOverlay = function(event) {
+//   if(event.target === event.currentTarget) {
+//     closePopup(popupEditProfile);
+//     closePopup(popupAddPicture);
+//   }
+// }
 
 //вешаем слушатель на 3 кнопки
 closePopupEditProfile.addEventListener('click', function () {
@@ -74,14 +75,17 @@ closePopupAddPicture.addEventListener('click', function () {
 //});
 
 
-popupElement.addEventListener('click', closePopupByClickOnOverlay);
+// closePopupEditProfile.addEventListener('click', closePopupByClickOnOverlay);
+// closePopupAddPicture.addEventListener('click', closePopupByClickOnOverlay);
 
 //функция сохранить
 function handleFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent =  profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
-  closePopup ();
+  closePopup(popupEditProfile);
+  closePopup(popupAddPicture);
+
 }
 formEdit.addEventListener('submit', handleFormSubmit);
 
@@ -146,7 +150,7 @@ const createCard = (card) => {
 
 
 const renderCard = (card) => {
-  elementsList.append(createCard(card));
+  elementsList.prepend(createCard(card));
 };
 
 initialCards.forEach((element) => {
@@ -155,16 +159,19 @@ initialCards.forEach((element) => {
 
 const formCard = document.querySelector("#form-card");
 const inputPlace = document.querySelector('#place');
+const inputLink = document.querySelector('#place-link');
 
 const cardFormSubmit = (evt) => {
   evt.preventDefault();
   //из инпута достаем value
-  const placeName = inputPlace.value;
-  renderCard(placeName);
-  //inputPlace.value = '';
-
-
-  closePopup ();
+  let newCard = {
+    name: inputPlace.value,
+    link: inputLink.value
+  }
+  renderCard(newCard);
+  inputPlace.value = '';
+  inputLink.value = '';
+  closePopup(popupAddPicture);
 }
 
 formCard.addEventListener('submit', cardFormSubmit);
