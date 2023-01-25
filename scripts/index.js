@@ -3,7 +3,7 @@
 const popupElement = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddPicture = document.querySelector('.popup_type_add-picture');
-const popupOpenPicture = document.querySelectorAll('.popup_type_open-picture');
+const popupOpenPicture = document.querySelector('.popup_type_open-picture');
 
 const buttonPicture = document.querySelector('.button-image');
 
@@ -13,7 +13,7 @@ const formEdit = popupElement.querySelector('.card-form');
 //объявляем 3 кнопки работы с попапами
 const editButton = document.querySelector('.profile-info__edit-button');
 const addPictureButton = document.querySelector('.add-button');
-const openPictureButton = document.querySelector('.button-image');
+//const openPictureButton = document.querySelector('.button-image');
 
 const saveButton = popupElement.querySelector('.card-form__save');//зачем она
 //объявляем, что поля имя профиля и профессия заполняются из текстового значения в html
@@ -40,17 +40,16 @@ editButton.addEventListener('click', function () {
 addPictureButton.addEventListener('click', function () {
   openPopup(popupAddPicture);
 });
-
-
 // пытаюсь передать в открытый попап src и текст
-openPictureButton.addEventListener('click', function () {
-  openPopup(popupOpenPicture);
-  document.querySelector('.popup__image').src = initialCards.link;
-  document.querySelector('.popup__image').alt = initialCards.name;
-  document.querySelector('.popup__caption').textContent = initialCards.name;
-//   profileNameInput.value = profileName.textContent;
-//  profileJobInput.value = profileJob.textContent;
-});
+// openPictureButton.addEventListener('click', function () {
+//  console.log(openPictureButton)
+//   //openPopup(popupOpenPicture);
+//   // document.querySelector('.popup__image').src = initialCards.link;
+//   // document.querySelector('.popup__image').alt = initialCards.name;
+//   // document.querySelector('.popup__caption').textContent = initialCards.name;
+// //   profileNameInput.value = profileName.textContent;
+// //  profileJobInput.value = profileJob.textContent;
+// });
 
 
 //объявляем кнопки закрытия попапов
@@ -62,12 +61,6 @@ const closePopupOpenPicture = document.querySelector('.popup__close_type_open-pi
 const closePopup = function (buttonClose) {
   buttonClose.classList.remove('popup_is-opened');
 }
-// const closePopupByClickOnOverlay = function(event) {
-//   if(event.target === event.currentTarget) {
-//     closePopup(popupEditProfile);
-//     closePopup(popupAddPicture);
-//   }
-// }
 
 //вешаем слушатель на 3 кнопки
 closePopupEditProfile.addEventListener('click', function () {
@@ -79,10 +72,6 @@ closePopupAddPicture.addEventListener('click', function () {
 closePopupOpenPicture.addEventListener('click', function () {
  closePopup(popupOpenPicture);
 });
-
-
-// closePopupEditProfile.addEventListener('click', closePopupByClickOnOverlay);
-// closePopupAddPicture.addEventListener('click', closePopupByClickOnOverlay);
 
 //функция сохранить
 function handleFormSubmit (evt) {
@@ -140,7 +129,7 @@ const createCard = (card) => {
       </button>
       <div class="element__label">
         <h2 class="element__title"></h2>
-        <button class="element__button-like element__button-like_active" type="button"></button>
+        <button class="element__button-like" type="button"></button>
       </div>
     </li>
   `;
@@ -149,6 +138,9 @@ const createCard = (card) => {
   container.querySelector('.element__picture').src = card.link;
   container.querySelector('.element__picture').alt = card.name;
   container.querySelector('.element__title').textContent = card.name;
+
+  container.querySelector('.element__button-like').addEventListener('click', (card) => like);
+  container.querySelector('.element__trash').addEventListener('click', (card) => removeCard);
 
   return container.firstElementChild;
 };
@@ -181,23 +173,30 @@ const cardFormSubmit = (evt) => {
 
 formCard.addEventListener('submit', cardFormSubmit);
 
-//объявляем кнопку лайк
-const likeButton = document.querySelector('.element__button-like');
-console.log(likeButton);
+// //объявляем кнопку лайк
+const likeButtons = document.querySelectorAll('.element__button-like');
 //добавим обработчик
-const like = (evt) => {
-  evt.addEventListener ('click', () => {
-    likeButton.target.classList.toggle('element__button-like_active')
+const like = likeButtons.forEach((evt) => {
+  evt.addEventListener ('click', (event) => {
+    event.target.classList.toggle('element__button-like_active')
 });
-};
+});
 
 
 //при нажатии на урну - удалить карточку
-const trash = document.querySelector('.element__trash'); //выбрали кнопку удаления
-// добавим обработчик
-trash.addEventListener('click',  () => {
-  const elementLi = trash.closest('.element');
+const trashButtons = document.querySelectorAll('.element__trash'); //выбрали кнопки удаления
+const removeCard = trashButtons.forEach((button) => {
+button.addEventListener('click', () => {
+  const elementLi = trashButtons.closest('.element');
   elementLi.remove('element__trash');
 });
-
-
+});
+const openPictureButtons = document.querySelectorAll('.button-image');
+const openPicture = openPictureButtons.forEach((button) => {
+  button.addEventListener ('click', (event) => {
+    openPopup(popupOpenPicture);
+    document.querySelector('.popup__image').src = event.target.src;
+    document.querySelector('.popup__image').alt = event.target.alt;
+    document.querySelector('.popup__caption').textContent = event.target.alt;
+  });
+});
