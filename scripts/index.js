@@ -182,15 +182,15 @@ const like = likeButtons.forEach((evt) => {
 });
 });
 
-
 //при нажатии на урну - удалить карточку
 const trashButtons = document.querySelectorAll('.element__trash'); //выбрали кнопки удаления
 const removeCard = trashButtons.forEach((button) => {
-button.addEventListener('click', () => {
-  const elementLi = trashButtons.closest('.element');
-  elementLi.remove('element__trash');
+button.addEventListener('click', (event) => {
+   event.target.closest('.element').remove();
 });
 });
+
+//попап - открыть картинку
 const openPictureButtons = document.querySelectorAll('.button-image');
 const openPicture = openPictureButtons.forEach((button) => {
   button.addEventListener ('click', (event) => {
