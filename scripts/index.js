@@ -84,19 +84,35 @@ function handleFormSubmit (evt) {
 }
 formEdit.addEventListener('submit', handleFormSubmit);
 
-// //объявляем кнопку лайк
+// //объявляем кнопки лайк
 const likeButtons = document.querySelectorAll('.element__button-like');
-//добавим обработчик
 
-
+//функция переключения лайка
 const clickLike = (event) => {
   event.target.classList.toggle('element__button-like_active')
 };
-
+//добавим обработчик на существующие карточки
 const like = likeButtons.forEach((button) => {
   button.addEventListener('click', clickLike);
 });
 
+//при нажатии на урну - удалить карточку
+const trashButtons = document.querySelectorAll('.element__trash'); //выбрали кнопки удаления
+//функция удаления карточки
+const removeCard  = (event) => {
+  event.target.closest('.element').remove();
+};
+//добавим обработчик на существующие карточки
+const trashButton = trashButtons.forEach((button) => {
+  button.addEventListener('click', removeCard);
+});
+
+const openPicture = (event) => {
+  openPopup(popupOpenPicture);
+    document.querySelector('.popup__image').src = event.target.src;
+    document.querySelector('.popup__image').alt = event.target.alt;
+    document.querySelector('.popup__caption').textContent = event.target.alt;
+};
 //попытка добавления карточки на страницу
 //контент=выбрать весь контент внутри, клоннод = копирует ноду со всеми элементами внутри
 
@@ -151,8 +167,8 @@ const createCard = (card) => {
   container.querySelector('.element__title').textContent = card.name;
 
   container.querySelector('.element__button-like').addEventListener('click', clickLike);
-  container.querySelector('.element__trash').addEventListener('click', (card) => removeCard);
-
+  container.querySelector('.element__trash').addEventListener('click', removeCard);
+  container.querySelector('.button-image').addEventListener('click', openPicture);
   return container.firstElementChild;
 };
 
@@ -187,21 +203,22 @@ formCard.addEventListener('submit', cardFormSubmit);
 
 
 
-//при нажатии на урну - удалить карточку
-const trashButtons = document.querySelectorAll('.element__trash'); //выбрали кнопки удаления
-const removeCard = trashButtons.forEach((button) => {
-button.addEventListener('click', (event) => {
-   event.target.closest('.element').remove();
-});
-});
+
 
 //попап - открыть картинку
 const openPictureButtons = document.querySelectorAll('.button-image');
-const openPicture = openPictureButtons.forEach((button) => {
-  button.addEventListener ('click', (event) => {
-    openPopup(popupOpenPicture);
-    document.querySelector('.popup__image').src = event.target.src;
-    document.querySelector('.popup__image').alt = event.target.alt;
-    document.querySelector('.popup__caption').textContent = event.target.alt;
-  });
-});
+
+
+
+const openOldPicture = openPictureButtons.forEach((button) => {
+    button.addEventListener ('click', openPicture)});
+
+
+// const openPicture = openPictureButtons.forEach((button) => {
+//   button.addEventListener ('click', (event) => {
+//     openPopup(popupOpenPicture);
+//     document.querySelector('.popup__image').src = event.target.src;
+//     document.querySelector('.popup__image').alt = event.target.alt;
+//     document.querySelector('.popup__caption').textContent = event.target.alt;
+//   });
+// });
