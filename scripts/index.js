@@ -84,7 +84,18 @@ function handleFormSubmit (evt) {
 }
 formEdit.addEventListener('submit', handleFormSubmit);
 
+// //объявляем кнопку лайк
+const likeButtons = document.querySelectorAll('.element__button-like');
+//добавим обработчик
 
+
+const clickLike = (event) => {
+  event.target.classList.toggle('element__button-like_active')
+};
+
+const like = likeButtons.forEach((button) => {
+  button.addEventListener('click', clickLike);
+});
 
 //попытка добавления карточки на страницу
 //контент=выбрать весь контент внутри, клоннод = копирует ноду со всеми элементами внутри
@@ -139,7 +150,7 @@ const createCard = (card) => {
   container.querySelector('.element__picture').alt = card.name;
   container.querySelector('.element__title').textContent = card.name;
 
-  container.querySelector('.element__button-like').addEventListener('click', (card) => like);
+  container.querySelector('.element__button-like').addEventListener('click', clickLike);
   container.querySelector('.element__trash').addEventListener('click', (card) => removeCard);
 
   return container.firstElementChild;
@@ -173,14 +184,8 @@ const cardFormSubmit = (evt) => {
 
 formCard.addEventListener('submit', cardFormSubmit);
 
-// //объявляем кнопку лайк
-const likeButtons = document.querySelectorAll('.element__button-like');
-//добавим обработчик
-const like = likeButtons.forEach((evt) => {
-  evt.addEventListener ('click', (event) => {
-    event.target.classList.toggle('element__button-like_active')
-});
-});
+
+
 
 //при нажатии на урну - удалить карточку
 const trashButtons = document.querySelectorAll('.element__trash'); //выбрали кнопки удаления
