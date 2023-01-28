@@ -7,7 +7,6 @@ const popupOpenPicture = document.querySelector('.popup_type_open-picture');
 
 const buttonPicture = document.querySelector('.button-image');
 
-
 const formEdit = popupElement.querySelector('.card-form');
 
 //объявляем 3 кнопки работы с попапами
@@ -40,16 +39,6 @@ editButton.addEventListener('click', function () {
 addPictureButton.addEventListener('click', function () {
   openPopup(popupAddPicture);
 });
-// пытаюсь передать в открытый попап src и текст
-// openPictureButton.addEventListener('click', function () {
-//  console.log(openPictureButton)
-//   //openPopup(popupOpenPicture);
-//   // document.querySelector('.popup__image').src = initialCards.link;
-//   // document.querySelector('.popup__image').alt = initialCards.name;
-//   // document.querySelector('.popup__caption').textContent = initialCards.name;
-// //   profileNameInput.value = profileName.textContent;
-// //  profileJobInput.value = profileJob.textContent;
-// });
 
 
 //объявляем кнопки закрытия попапов
@@ -212,13 +201,3 @@ const openPictureButtons = document.querySelectorAll('.button-image');
 
 const openOldPicture = openPictureButtons.forEach((button) => {
     button.addEventListener ('click', openPicture)});
-
-
-// const openPicture = openPictureButtons.forEach((button) => {
-//   button.addEventListener ('click', (event) => {
-//     openPopup(popupOpenPicture);
-//     document.querySelector('.popup__image').src = event.target.src;
-//     document.querySelector('.popup__image').alt = event.target.alt;
-//     document.querySelector('.popup__caption').textContent = event.target.alt;
-//   });
-// });

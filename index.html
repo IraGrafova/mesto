@@ -33,86 +33,7 @@
         <button class="add-button" type="button"></button>
       </section>
       <section class="snapshots">
-        <ul class="elements">
-         <!-- <li class="element">
-            <button class="button-image">
-              <img
-                class="element__picture"
-                src="./images/Санкт-Петербург.jpg"
-                alt="Санкт-Петербург"
-             />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Санкт-Петербург</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <button class="button-image">
-              <img
-                class="element__picture"
-                src="./images/Ростов-на-Дону.jpg"
-                alt="Ростов-на-Дону"
-              />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Ростов-на-Дону</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <button class="button-image">
-                <img
-                class="element__picture"
-                src="./images/Великий_Новгород.jpg"
-                alt="Великий Новгород"
-              />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Великий Новгород</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <button class="button-image">
-              <img
-                class="element__picture"
-                src="./images/Выборг.jpg"
-                alt="Выборг"
-              />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Выборг</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <button class="button-image">
-              <img
-                class="element__picture"
-                src="./images/Республика_Карелия.jpg"
-                alt="Республика Карелия"
-              />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Республика Карелия</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <button class="button-image">
-              <img
-                class="element__picture"
-                src="./images/Самарская_область.jpg"
-                alt="Самарская область"
-              />
-            </button>
-            <div class="element__label">
-              <h2 class="element__title">Самарская область</h2>
-              <button class="element__button-like" type="button"></button>
-            </div>
-          </li>-->
-        </ul>
+        <ul class="elements"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -120,7 +41,10 @@
     </footer>
     <div class="popup popup_type_edit-profile">
       <div class="popup__form">
-        <button class="popup__close popup__close_type_edit-profile" type="button"></button>
+        <button
+          class="popup__close popup__close_type_edit-profile"
+          type="button"
+        ></button>
         <form class="card-form" name="edit-form">
           <h2 class="card-form__title">Редактировать профиль</h2>
           <input class="card-form__field" type="text" name="name" id="name" />
@@ -131,36 +55,45 @@
     </div>
     <div class="popup popup_type_add-picture">
       <div class="popup__form">
-        <button class="popup__close popup__close_type_add-picture" type="button"></button>
+        <button
+          class="popup__close popup__close_type_add-picture"
+          type="button"
+        ></button>
         <form class="card-form" name="create-form" id="form-card">
           <h2 class="card-form__title">Новое место</h2>
-          <input class="card-form__field" type="text" name="place" id="place" placeholder="Название"/>
-          <input class="card-form__field" type="text" name="place-link" id="place-link" placeholder="Ссылка на картинку"/>
-          <button class="card-form__save" type="submit" id="create-card">Создать</button>
+          <input
+            class="card-form__field"
+            type="text"
+            name="place"
+            id="place"
+            placeholder="Название"
+          />
+          <input
+            class="card-form__field"
+            type="text"
+            name="place-link"
+            id="place-link"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="card-form__save" type="submit" id="create-card">
+            Создать
+          </button>
         </form>
       </div>
     </div>
     <div class="popup popup_type_open-picture">
       <div class="popup__form-picture">
-        <button class="popup__close popup__close_type_open-picture" type="button"></button>
+        <button
+          class="popup__close popup__close_type_open-picture"
+          type="button"
+        ></button>
         <figure class="popup__image-open">
-          <img class="popup__image" src="" alt="">
+          <img class="popup__image" src="" alt="" />
           <figcaption class="popup__caption"></figcaption>
         </figure>
       </div>
     </div>
-   <template id="to-do-element">
-      <li class="element">
-        <button class="element__trash"></button>
-        <button class="button-image">
-          <img class="element__picture" src="" alt=""/>
-        </button>
-        <div class="element__label">
-          <h2 class="element__title"></h2>
-          <button class="element__button-like" type="button"></button>
-        </div>
-      </li>
-    </template>
+    <template id="to-do-element"></template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

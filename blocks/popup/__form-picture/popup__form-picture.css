@@ -1,12 +1,4 @@
 .popup__form-picture {
   margin: 0 auto;
   position: relative;
-  max-width: 816px;
-  width: 75%;
-}
-@media (min-width: 425px) {
-  .popup__form-picture {
-    width: auto;
-    max-width: 75vw;
-  }
 }
