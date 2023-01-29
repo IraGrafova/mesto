@@ -31,15 +31,15 @@ buttonEditProfile.addEventListener("click", function () {
 buttonAddCard.addEventListener("click", function () {
   openPopup(popupAddPicture);
 });
-//при открытии изображения передать src, alt и подпись картинки из данных карточки, при нажатии на которую произошло событие
-const popupImage = document.querySelector(".popup__image");
-const popupCaption = document.querySelector(".popup__caption");
-const openPicture = (event) => {
-  popupImage.src = event.target.src;
-  popupImage.alt = event.target.alt;
-  popupCaption.textContent = event.target.alt;
-  openPopup(popupOpenPicture);
-};
+// //при открытии изображения передать src, alt и подпись картинки из данных карточки, при нажатии на которую произошло событие
+// const popupImage = document.querySelector(".popup__image");
+// const popupCaption = document.querySelector(".popup__caption");
+// const openPicture = (event) => {
+//   popupImage.src = event.target.src;
+//   popupImage.alt = event.target.alt;
+//   popupCaption.textContent = event.target.alt;
+//   openPopup(popupOpenPicture);
+// };
 
 //объявляем кнопки закрытия попапов
 const buttonClosePopupEditProfile = document.querySelector(".popup__close_type_edit-profile");
@@ -72,27 +72,27 @@ function handleFormSubmit(evt) {
 formEdit.addEventListener("submit", handleFormSubmit);
 
 // //объявляем кнопки лайк
-const buttonsLike = document.querySelectorAll(".element__button-like");
+//const buttonsLike = document.querySelectorAll(".element__button-like");
 
 //функция переключения лайка
-const clickLike = (event) => {
-  event.target.classList.toggle("element__button-like_active");
-};
-//добавим обработчик на существующие карточки
-const like = buttonsLike.forEach((button) => {
-  button.addEventListener("click", clickLike);
-});
+// const clickLike = (event) => {
+//   event.target.classList.toggle("element__button-like_active");
+// };
+// //добавим обработчик на существующие карточки
+// const like = buttonsLike.forEach((button) => {
+//   button.addEventListener("click", clickLike);
+// });
 
 //при нажатии на урну - удалить карточку
-const buttonsTrash = document.querySelectorAll(".element__trash"); //выбрали кнопки удаления
-//функция удаления карточки
-const removeCard = (event) => {
-  event.target.closest(".element").remove();
-};
-//добавим обработчик на существующие карточки
-const trashButton = buttonsTrash.forEach((button) => {
-  button.addEventListener("click", removeCard);
-});
+// const buttonsTrash = document.querySelectorAll(".element__trash"); //выбрали кнопки удаления
+// //функция удаления карточки
+// const removeCard = (event) => {
+//   event.target.closest(".element").remove();
+// };
+// //добавим обработчик на существующие карточки
+// const trashButton = buttonsTrash.forEach((button) => {
+//   button.addEventListener("click", removeCard);
+// });
 
 //добавление карточек на страницу
 //контент=выбрать весь контент внутри
@@ -126,7 +126,8 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
+const popupImage = document.querySelector(".popup__image");
+const popupCaption = document.querySelector(".popup__caption");
 const createCard = (card) => {
   const template = `
     <li class="element">
@@ -141,21 +142,40 @@ const createCard = (card) => {
     </li>
   `;
   const container = document.createElement("div");
-  container.innerHTML = template;
-  container.querySelector(".element__picture").src = card.link;
-  container.querySelector(".element__picture").alt = card.name;
-  container.querySelector(".element__title").textContent = card.name;
 
-  container
-    .querySelector(".element__button-like")
-    .addEventListener("click", clickLike);
-  container
-    .querySelector(".element__trash")
-    .addEventListener("click", removeCard);
-  container
-    .querySelector(".button-image")
-    .addEventListener("click", openPicture);
-  return container.firstElementChild;
+  container.innerHTML = template;
+  const cardPicture = container.firstElementChild;
+  cardPicture.querySelector(".element__picture").src = card.link;
+  cardPicture.querySelector(".element__picture").alt = card.name;
+  cardPicture.querySelector(".element__title").textContent = card.name;
+
+  const buttonTrash = cardPicture.querySelector(".element__trash");
+  buttonTrash.addEventListener('click', () => {
+    cardPicture.remove();
+  });
+  const buttonLike = cardPicture.querySelector(".element__button-like");
+  buttonLike.addEventListener('click', (evt) => {
+    evt.target.classList.toggle("element__button-like_active");
+  });
+
+
+const buttonOpenImage = cardPicture.querySelector('.button-image');
+buttonOpenImage.addEventListener('click', (event) => {
+   popupImage.src = event.target.src;
+  popupImage.alt = event.target.alt;
+  popupCaption.textContent = event.target.alt;
+  openPopup(popupOpenPicture);
+});
+  // cardPicture
+  //   .querySelector(".element__button-like")
+  //   .addEventListener("click", clickLike);
+  //   cardPicture
+  //   .querySelector(".element__trash")
+  //   .addEventListener("click", removeCard);
+  //   cardPicture
+  //   .querySelector(".button-image")
+  //   .addEventListener("click", openPicture);
+  return cardPicture;
 };
 
 const renderCard = (card) => {
@@ -186,8 +206,8 @@ const cardFormSubmit = (evt) => {
 formCard.addEventListener("submit", cardFormSubmit);
 
 //попап - открыть картинку, для карточек добавленных изначально
-const buttonsOpenPicture = document.querySelectorAll(".button-image");
-//вешаем слушатель для открытия изображения на карточки, добавленные на страницу изначально
-const openOldPicture = buttonsOpenPicture.forEach((button) => {
-  button.addEventListener("click", openPicture);
-});
+// const buttonsOpenPicture = document.querySelectorAll(".button-image");
+// //вешаем слушатель для открытия изображения на карточки, добавленные на страницу изначально
+// const openOldPicture = buttonsOpenPicture.forEach((button) => {
+//   button.addEventListener("click", openPicture);
+// });
