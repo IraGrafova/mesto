@@ -7,42 +7,44 @@ const popupOpenPicture = document.querySelector(".popup_type_open-picture");
 const formEdit = popupElement.querySelector(".card-form");
 
 //объявляем кнопки работы с попапами
-const editButton = document.querySelector(".profile-info__edit-button");
-const addPictureButton = document.querySelector(".add-button");
+const buttonEditProfile = document.querySelector(".profile-info__edit-button");
+const buttonAddCard = document.querySelector(".add-button");
 
 //объявляем, что поля имя профиля и профессия заполняются из текстового значения в html
-let profileNameInput = popupElement.querySelector("#name");
-let profileJobInput = popupElement.querySelector("#job");
+const profileNameInput = popupElement.querySelector("#name");
+const profileJobInput = popupElement.querySelector("#job");
 
 //объявляем имя профиля и профессию
-let profileName = document.querySelector(".profile-info__title");
-let profileJob = document.querySelector(".profile-info__subtitle");
+const profileName = document.querySelector(".profile-info__title");
+const profileJob = document.querySelector(".profile-info__subtitle");
 
 //функция открытия попапа
 const openPopup = function (popup) {
   popup.classList.add("popup_is-opened");
 };
 //вешаем слушатель на кнопки
-editButton.addEventListener("click", function () {
+buttonEditProfile.addEventListener("click", function () {
   openPopup(popupEditProfile);
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
 });
-addPictureButton.addEventListener("click", function () {
+buttonAddCard.addEventListener("click", function () {
   openPopup(popupAddPicture);
 });
 //при открытии изображения передать src, alt и подпись картинки из данных карточки, при нажатии на которую произошло событие
+const popupImage = document.querySelector(".popup__image");
+const popupCaption = document.querySelector(".popup__caption");
 const openPicture = (event) => {
+  popupImage.src = event.target.src;
+  popupImage.alt = event.target.alt;
+  popupCaption.textContent = event.target.alt;
   openPopup(popupOpenPicture);
-  document.querySelector(".popup__image").src = event.target.src;
-  document.querySelector(".popup__image").alt = event.target.alt;
-  document.querySelector(".popup__caption").textContent = event.target.alt;
 };
 
 //объявляем кнопки закрытия попапов
-const closePopupEditProfile = document.querySelector(".popup__close_type_edit-profile");
-const closePopupAddPicture = document.querySelector(".popup__close_type_add-picture");
-const closePopupOpenPicture = document.querySelector(".popup__close_type_open-picture");
+const buttonClosePopupEditProfile = document.querySelector(".popup__close_type_edit-profile");
+const buttonClosePopupAddPicture = document.querySelector(".popup__close_type_add-picture");
+const buttonClosePopupOpenPicture = document.querySelector(".popup__close_type_open-picture");
 
 //функция закрытия попапа
 const closePopup = function (buttonClose) {
@@ -50,13 +52,13 @@ const closePopup = function (buttonClose) {
 };
 
 //вешаем слушатель на 3 кнопки
-closePopupEditProfile.addEventListener("click", function () {
+buttonClosePopupEditProfile.addEventListener("click", function () {
   closePopup(popupEditProfile);
 });
-closePopupAddPicture.addEventListener("click", function () {
+buttonClosePopupAddPicture.addEventListener("click", function () {
   closePopup(popupAddPicture);
 });
-closePopupOpenPicture.addEventListener("click", function () {
+buttonClosePopupOpenPicture.addEventListener("click", function () {
   closePopup(popupOpenPicture);
 });
 
@@ -66,30 +68,29 @@ function handleFormSubmit(evt) {
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
   closePopup(popupEditProfile);
-  closePopup(popupAddPicture);
 }
 formEdit.addEventListener("submit", handleFormSubmit);
 
 // //объявляем кнопки лайк
-const likeButtons = document.querySelectorAll(".element__button-like");
+const buttonsLike = document.querySelectorAll(".element__button-like");
 
 //функция переключения лайка
 const clickLike = (event) => {
   event.target.classList.toggle("element__button-like_active");
 };
 //добавим обработчик на существующие карточки
-const like = likeButtons.forEach((button) => {
+const like = buttonsLike.forEach((button) => {
   button.addEventListener("click", clickLike);
 });
 
 //при нажатии на урну - удалить карточку
-const trashButtons = document.querySelectorAll(".element__trash"); //выбрали кнопки удаления
+const buttonsTrash = document.querySelectorAll(".element__trash"); //выбрали кнопки удаления
 //функция удаления карточки
 const removeCard = (event) => {
   event.target.closest(".element").remove();
 };
 //добавим обработчик на существующие карточки
-const trashButton = trashButtons.forEach((button) => {
+const trashButton = buttonsTrash.forEach((button) => {
   button.addEventListener("click", removeCard);
 });
 
@@ -172,21 +173,21 @@ const inputLink = document.querySelector("#place-link");
 const cardFormSubmit = (evt) => {
   evt.preventDefault();
   //из инпута достаем value
-  let newCard = {
+  const newCard = {
     name: inputPlace.value,
     link: inputLink.value,
   };
   renderCard(newCard);
+  closePopup(popupAddPicture);
   inputPlace.value = "";
   inputLink.value = "";
-  closePopup(popupAddPicture);
 };
 
 formCard.addEventListener("submit", cardFormSubmit);
 
 //попап - открыть картинку, для карточек добавленных изначально
-const openPictureButtons = document.querySelectorAll(".button-image");
+const buttonsOpenPicture = document.querySelectorAll(".button-image");
 //вешаем слушатель для открытия изображения на карточки, добавленные на страницу изначально
-const openOldPicture = openPictureButtons.forEach((button) => {
+const openOldPicture = buttonsOpenPicture.forEach((button) => {
   button.addEventListener("click", openPicture);
 });
