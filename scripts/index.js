@@ -33,9 +33,15 @@ buttonAddCard.addEventListener("click", function () {
 });
 
 //объявляем кнопки закрытия попапов
-const buttonClosePopupEditProfile = document.querySelector(".popup__close_type_edit-profile");
-const buttonClosePopupAddPicture = document.querySelector(".popup__close_type_add-picture");
-const buttonClosePopupOpenPicture = document.querySelector(".popup__close_type_open-picture");
+const buttonClosePopupEditProfile = document.querySelector(
+  ".popup__close_type_edit-profile"
+);
+const buttonClosePopupAddPicture = document.querySelector(
+  ".popup__close_type_add-picture"
+);
+const buttonClosePopupOpenPicture = document.querySelector(
+  ".popup__close_type_open-picture"
+);
 
 //функция закрытия попапа
 const closePopup = function (buttonClose) {
@@ -63,11 +69,7 @@ function handleFormSubmit(evt) {
 formEdit.addEventListener("submit", handleFormSubmit);
 
 //добавление карточек на страницу
-//контент=выбрать весь контент внутри
 const elementsList = document.querySelector(".elements");
-
-const popupForm = document.querySelector(".popup__form");
-
 const initialCards = [
   {
     name: "Архыз",
@@ -98,28 +100,31 @@ const popupImage = document.querySelector(".popup__image");
 const popupCaption = document.querySelector(".popup__caption");
 const template = document.querySelector("#to-do-element");
 const createCard = (card) => {
-  cardPicture = template.content.querySelector(".element").cloneNode(true);
+  const cardPicture = template.content
+    .querySelector(".element")
+    .cloneNode(true); //контент=выбрать весь контент внутри
 
   cardPicture.querySelector(".element__picture").src = card.link;
   cardPicture.querySelector(".element__picture").alt = card.name;
   cardPicture.querySelector(".element__title").textContent = card.name;
 
   const buttonTrash = cardPicture.querySelector(".element__trash");
-  buttonTrash.addEventListener('click', () => {
+  buttonTrash.addEventListener("click", () => {
+    console.log(cardPicture);
     cardPicture.remove();
   });
   const buttonLike = cardPicture.querySelector(".element__button-like");
-  buttonLike.addEventListener('click', (evt) => {
+  buttonLike.addEventListener("click", (evt) => {
     evt.target.classList.toggle("element__button-like_active");
   });
 
-const buttonOpenImage = cardPicture.querySelector('.button-image');
-buttonOpenImage.addEventListener('click', (event) => {
-   popupImage.src = event.target.src;
-  popupImage.alt = event.target.alt;
-  popupCaption.textContent = event.target.alt;
-  openPopup(popupOpenPicture);
-});
+  const buttonOpenImage = cardPicture.querySelector(".button-image");
+  buttonOpenImage.addEventListener("click", (event) => {
+    popupImage.src = event.target.src;
+    popupImage.alt = event.target.alt;
+    popupCaption.textContent = event.target.alt;
+    openPopup(popupOpenPicture);
+  });
 
   return cardPicture;
 };
