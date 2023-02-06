@@ -47,11 +47,11 @@
         ></button>
         <form class="card-form" name="edit-form">
           <h2 class="card-form__title">Редактировать профиль</h2>
-          <input class="card-form__field" type="text" name="name" id="name" />
-          <input class="card-form__field" type="text" name="job" id="job" />
+          <input class="card-form__field" type="text" name="name" id="name" placeholder="Имя" required minlength="2" maxlength="40"/>
+          <input class="card-form__field" type="text" name="job" id="job" placeholder="О себе" required minlength="2" maxlength="200"/>
           <button class="card-form__save" type="submit">Сохранить</button>
         </form>
-      </div>
+      </div>S
     </div>
     <div class="popup popup_type_add-picture">
       <div class="popup__form">
@@ -67,14 +67,18 @@
             name="place"
             id="place"
             placeholder="Название"
-          />
+            required
+            minlength="2"
+            maxlength="30"
+            />
           <input
             class="card-form__field"
-            type="text"
+            type="url"
             name="place-link"
             id="place-link"
             placeholder="Ссылка на картинку"
-          />
+            required
+            />
           <button class="card-form__save" type="submit" id="create-card">
             Создать
           </button>
@@ -106,5 +110,6 @@
       </li>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

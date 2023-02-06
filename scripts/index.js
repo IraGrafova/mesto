@@ -59,6 +59,25 @@ buttonClosePopupOpenPicture.addEventListener("click", function () {
   closePopup(popupOpenPicture);
 });
 
+//закрыть попап при клике на оверлей
+  const closePopupByClickOnOverlay = function(event) {
+    if(event.target === event.currentTarget) {
+      closePopup(popupEditProfile);
+    }
+  }
+  popupElement.addEventListener('click', closePopupByClickOnOverlay);
+
+
+
+function EscHandler(evt) {
+  if (evt.key === "Escape") {
+    closePopup(popupEditProfile);
+}}
+document.addEventListener("keydown", (EscHandler));
+profileJobInput.addEventListener("keydown", (EscHandler));
+popupEditProfile.addEventListener("keydown", (EscHandler));
+
+
 //функция сохранить
 function handleFormSubmit(evt) {
   evt.preventDefault();
