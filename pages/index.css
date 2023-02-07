@@ -53,3 +53,4 @@
 
 @import url(../blocks/card-form/__input/_type/card-form__input_type_error.css);
 @import url(../blocks/error/error.css);
+@import url(../blocks/card-form/__save/_disabled/card-form__save_disabled.css);
