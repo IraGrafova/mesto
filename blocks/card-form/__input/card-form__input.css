@@ -1,5 +1,4 @@
 .card-form__input {
-  margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-family: "Inter", "Arial", sans-serif;
@@ -11,9 +10,6 @@
   width: 84%;
   max-width: 358px;
 }
-.card-form__input:last-of-type {
-  margin-bottom: 0;
-}
 .card-form__input:focus {
   outline: none;
   border: 1px solid lightblue;
@@ -24,6 +20,5 @@
 @media (min-width: 1280px) {
   .card-form__input {
     line-height: 28px;
-    margin-bottom: 25px;
   }
 }

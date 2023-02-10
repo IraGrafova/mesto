@@ -1,5 +1,5 @@
 .card-form__save {
-  margin-top: 45px;
+  margin-top: 33px;
   border: none;
   background: #000000;
   border-radius: 2px;
@@ -20,7 +20,7 @@
 @media (min-width: 1280px) {
   .card-form__save {
     width: 358px;
-    margin-top: 49px;
+    margin-top: 37px;
     height: 50px;
     font-size: 18px;
     line-height: 22px;
