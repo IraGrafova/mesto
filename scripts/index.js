@@ -22,6 +22,7 @@ const profileJob = document.querySelector(".profile-info__subtitle");
 const openPopup = function (popup) {
   popup.classList.add("popup_is-opened");
   popup.addEventListener("click", closePopupByClickOnOverlay);
+  document.addEventListener("keydown", (EscHandler));
 };
 
 //вешаем слушатель на кнопки открытия попапов
@@ -38,6 +39,7 @@ buttonAddCard.addEventListener("click", function () {
 const closePopup = function (popup) {
   popup.classList.remove("popup_is-opened");
   popup.removeEventListener("click", closePopupByClickOnOverlay);
+  document.removeEventListener("keydown", (EscHandler));
 };
 
 // закрыть попап по нажатию на кнопку крестик, перебираем кнопки, вешаем слушатель на каждую
@@ -64,7 +66,7 @@ function EscHandler(evt) {
     closePopup(openedPopup);
   }
 }
-document.addEventListener("keydown", EscHandler);
+
 
 //функция сохранить изменения данных профиля
 function handleFormSubmit(evt) {
