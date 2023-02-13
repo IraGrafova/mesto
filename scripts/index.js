@@ -18,11 +18,19 @@ const profileJobInput = popupElement.querySelector("#job");
 const profileName = document.querySelector(".profile-info__title");
 const profileJob = document.querySelector(".profile-info__subtitle");
 
+
+const buttonSubmit = document.querySelector("#create-card");
+const disebleButtonSave = function () {
+  buttonSubmit.classList.add('card-form__save_disabled');
+}
+
+
 //функция открытия попапа
 const openPopup = function (popup) {
   popup.classList.add("popup_is-opened");
   popup.addEventListener("click", closePopupByClickOnOverlay);
   document.addEventListener("keydown", (EscHandler));
+  disebleButtonSave();
 };
 
 //вешаем слушатель на кнопки открытия попапов
