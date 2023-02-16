@@ -65,13 +65,13 @@ function handleEscape(evt) {
   }
 }
 
-
 //функция сохранить изменения данных профиля
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
   closePopup(popupEditProfile);
+  evt.target.reset();
 }
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 

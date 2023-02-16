@@ -21,7 +21,7 @@ function enableValidation(config) {
       setTimeout(() => {
         toggleButton(item, config);
       }, 0);
-      
+
     });
   });
 }
@@ -57,14 +57,8 @@ function addInputListeners(form, config) {
     item.addEventListener("input", (event) => {
       handleFormInput(event, config);
     });
-    // проверяем валидна ли форма при нажатии на Enter и выполняем функцию сохранения новой карточки
-    item.addEventListener("keydown", (evt) => {
-      if (handleFormInput(evt, config) && evt.key === "Enter") {
-        submitCardForm(evt);
-      }
     });
-  });
-}
+  };
 
 // передаем функции включения валидации данные из объекта
 enableValidation(formValidationConfig);
