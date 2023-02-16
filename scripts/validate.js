@@ -21,7 +21,6 @@ function enableValidation(config) {
       setTimeout(() => {
         toggleButton(item, config);
       }, 0);
-
     });
   });
 }
