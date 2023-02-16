@@ -10,13 +10,19 @@ const formValidationConfig = {
 // запускаем валидацию, перебираем формы и для каждой запускаем 3 функции
 // (переключить состояние кнопки при открытии попапа, слушатель на инпуты, состояние кнопки при вводе данных в инпуты)
 function enableValidation(config) {
-  const form = document.querySelectorAll(config.formSelector);
-  form.forEach((item) => {
+  const forms = document.querySelectorAll(config.formSelector);
+  forms.forEach((item) => {
     item.addEventListener("input", () => {
       toggleButton(item, config);
     });
     addInputListeners(item, config);
     toggleButton(item, config);
+    item.addEventListener('reset', () => {
+      setTimeout(() => {
+        toggleButton(item, config);
+      }, 0);
+      
+    });
   });
 }
 
@@ -54,7 +60,7 @@ function addInputListeners(form, config) {
     // проверяем валидна ли форма при нажатии на Enter и выполняем функцию сохранения новой карточки
     item.addEventListener("keydown", (evt) => {
       if (handleFormInput(evt, config) && evt.key === "Enter") {
-        cardFormSubmit(evt);
+        submitCardForm(evt);
       }
     });
   });
