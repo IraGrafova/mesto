@@ -45,11 +45,30 @@ class Card {
 
 generateCard() {
   this._element = this._getTemplate();
+  this._setEventListeners();  //добавили обработчики
   this._element.querySelector('.element__picture').src = this._link;
   this._element.querySelector('.element__title').textContent = this._name;
 
   return this._element;
 }
+
+_setEventListeners() {
+  this._element.querySelector('.element__button-like').addEventListener('click', () => {
+    this._handleLikeClick();
+  });
+  this._element.querySelector(".element__trash").addEventListener('click', () => {
+    this._trashCard();
+  });
+}
+_handleLikeClick() {
+ this._element.querySelector('.element__button-like').classList.toggle("element__button-like_active");
+}
+
+_trashCard() {
+  this._element.remove();
+}
+
+
 }
 
 initialCards.forEach(item => {
