@@ -160,7 +160,7 @@ initialCards.forEach((item) => {
 // const inputPlace = document.querySelector("#place");
 // const inputLink = document.querySelector("#place-link");
 
-// //функция сохранить новую карточку при нажатии на "Сохранить"
+//функция сохранить новую карточку при нажатии на "Сохранить"
 // const submitCardForm = (evt) => {
 //   evt.preventDefault();
 //   //из инпута достаем value
@@ -174,3 +174,4 @@ initialCards.forEach((item) => {
 // };
 
 // formCard.addEventListener("submit", submitCardForm);
+export {openPopup, popupOpenPicture};
