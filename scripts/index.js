@@ -1,4 +1,4 @@
-//import Card from './Card';
+import { initialCards, Card } from './Card.js';
 
 
 //объявляем попапы
@@ -77,6 +77,14 @@ function handleProfileFormSubmit(evt) {
   evt.target.reset();
 }
 formEdit.addEventListener("submit", handleProfileFormSubmit);
+
+initialCards.forEach((item) => {
+  const card = new Card(item.link, item.name); // Создадим экземпляр карточки
+  const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
+  const elementsList = document.querySelector(".elements");
+
+  elementsList.prepend(cardElement); //добавляем карточку в DOM
+});
 
 // //добавление карточек на страницу
 // const elementsList = document.querySelector(".elements");

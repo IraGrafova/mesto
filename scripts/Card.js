@@ -35,47 +35,44 @@ class Card {
 
   _getTemplate() {
     const cardPicture = document
-    .querySelector("#to-do-element")
-    .content
-    .querySelector(".element")
-    .cloneNode(true);
+      .querySelector("#to-do-element")
+      .content.querySelector(".element")
+      .cloneNode(true);
 
     return cardPicture;
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._setEventListeners(); //добавили обработчики
+    this._element.querySelector(".element__picture").src = this._link;
+    this._element.querySelector(".element__title").textContent = this._name;
+
+    return this._element;
+  }
+
+  _setEventListeners() {
+    //все слушатели в одном месте
+    this._element
+      .querySelector(".element__button-like")
+      .addEventListener("click", () => {
+        this._handleLikeClick();
+      });
+    this._element
+      .querySelector(".element__trash")
+      .addEventListener("click", () => {
+        this._trashCard();
+      });
+  }
+  _handleLikeClick() {
+    this._element
+      .querySelector(".element__button-like")
+      .classList.toggle("element__button-like_active");
+  }
+
+  _trashCard() {
+    this._element.remove();
+  }
 }
 
-generateCard() {
-  this._element = this._getTemplate();
-  this._setEventListeners();  //добавили обработчики
-  this._element.querySelector('.element__picture').src = this._link;
-  this._element.querySelector('.element__title').textContent = this._name;
-
-  return this._element;
-}
-
-_setEventListeners() {
-  this._element.querySelector('.element__button-like').addEventListener('click', () => {
-    this._handleLikeClick();
-  });
-  this._element.querySelector(".element__trash").addEventListener('click', () => {
-    this._trashCard();
-  });
-}
-_handleLikeClick() {
- this._element.querySelector('.element__button-like').classList.toggle("element__button-like_active");
-}
-
-_trashCard() {
-  this._element.remove();
-}
-
-
-}
-
-initialCards.forEach(item => {
-  const card = new Card(item.link, item.name);   // Создадим экземпляр карточки
-  const cardElement = card.generateCard();   //создаем карточку и возвращаем наружу
-  const elementsList = document.querySelector(".elements");
-
-  elementsList.prepend(cardElement);    //добавляем карточку в DOM
-})
-//export default Card;
+export { initialCards, Card };
