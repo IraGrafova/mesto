@@ -84,9 +84,10 @@ class Card {
     this._element.remove();
   }
 
-  // _openImage() {
-  //   this._element.
-  // }
+  _addNewCard = (item) => {
+
+  }
+
 }
 
 export { initialCards, Card };

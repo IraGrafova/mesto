@@ -78,10 +78,16 @@ function handleProfileFormSubmit(evt) {
 }
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 
+
+const formCard = document.querySelector("#form-card");
+const inputPlace = document.querySelector("#place");
+const inputLink = document.querySelector("#place-link");
+const elementsList = document.querySelector(".elements");
+
 initialCards.forEach((item) => {
   const card = new Card(item.link, item.name); // Создадим экземпляр карточки
   const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
-  const elementsList = document.querySelector(".elements");
+  //const elementsList = document.querySelector(".elements");
 
   elementsList.prepend(cardElement); //добавляем карточку в DOM
 });
@@ -150,28 +156,32 @@ initialCards.forEach((item) => {
 //   return cardPicture;
 // };
 
-// const renderCard = (card) => {
-//   elementsList.prepend(createCard(card));
-// };
+const renderCard = (item) => {
+  const card = new Card(item.link, item.name); // Создадим экземпляр карточки
+  const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
+  //const elementsList = document.querySelector(".elements");
+
+  elementsList.prepend(cardElement); //добавляем карточку в DOM
+};
 
 // initialCards.forEach(renderCard);
 
-// const formCard = document.querySelector("#form-card");
-// const inputPlace = document.querySelector("#place");
-// const inputLink = document.querySelector("#place-link");
+//  const formCard = document.querySelector("#form-card");
+//  const inputPlace = document.querySelector("#place");
+//  const inputLink = document.querySelector("#place-link");
 
 //функция сохранить новую карточку при нажатии на "Сохранить"
-// const submitCardForm = (evt) => {
-//   evt.preventDefault();
-//   //из инпута достаем value
-//   const newCard = {
-//     name: inputPlace.value,
-//     link: inputLink.value,
-//   };
-//   renderCard(newCard);
-//   closePopup(popupAddPicture);
-//   evt.target.reset();
-// };
+ const submitCardForm = (evt) => {
+  evt.preventDefault();
+  //из инпута достаем value
+  const newCard = {
+    name: inputPlace.value,
+    link: inputLink.value,
+  };
+  renderCard(newCard);
+  closePopup(popupAddPicture);
+  evt.target.reset();
+};
 
-// formCard.addEventListener("submit", submitCardForm);
+ formCard.addEventListener("submit", submitCardForm);
 export {openPopup, popupOpenPicture};
