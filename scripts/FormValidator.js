@@ -18,63 +18,57 @@ class FormValidator {
   }
 
   //проверка валидности полей инпутов
-  _handleFormInput(item) {   //получаем в item инпут из перебора массива в слушателе _addInputListeners()
-  const inputId = item.id;
-  console.log(item.id)
-  const errorElement = document.querySelector(`#${inputId}-error`);
-  console.log(errorElement)
+  _handleFormInput(item) {
+    //получаем в item инпут из перебора массива в слушателе _addInputListeners()
+    const inputId = item.id;
+    const errorElement = document.querySelector(`#${inputId}-error`);
 
-  if (item.validity.valid) {
-    item.classList.remove(this._config.errorClass);
-    errorElement.textContent = "";
-  } else {
-    item.classList.add(this._config.errorClass);
-    errorElement.textContent = item.validationMessage;
-  }
+    if (item.validity.valid) {
+      item.classList.remove(this._config.errorClass);
+      errorElement.textContent = "";
+    } else {
+      item.classList.add(this._config.errorClass);
+      errorElement.textContent = item.validationMessage;
+    }
   }
 
   // функция переключения состояния кнопки (активна или заблокирована)
   _toggleButton() {
+    console.log(this._form);
     const buttonSubmit = this._form.querySelector(this._config.buttonSelector);
     const isFormValid = this._form.checkValidity(); //проверяем валидна ли форма методом checkValidity
     buttonSubmit.disabled = !isFormValid; //если форма не валидна, включить disable
-    buttonSubmit.classList.toggle(this._config.buttonDisabledClass, !isFormValid);
+    buttonSubmit.classList.toggle(
+      this._config.buttonDisabledClass,
+      !isFormValid
+    );
   }
 
   //все слушатели
   _addInputListeners() {
-    this._form.querySelectorAll('.card-form__input').forEach((item) => {
+    this._form.querySelectorAll(".card-form__input").forEach((item) => {
+      //слушатель на инпуты
       item.addEventListener("input", () => {
         this._handleFormInput(item);
       });
-})
-
-
-    // //слушатель на инпуты
-    // console.log(this._form)
-    // const form =  this._form;
-    // form.forEach((item) => {
-    //   console.log(item)
-      // item.addEventListener("input", () => {
-      //   this._handleFormInput();
-      //   });
-      //   item.addEventListener('reset', () => {
-      //     setTimeout(() => {
-      //       this._toggleButton();
-      //     }, 0);
-    //});
-    //})
-
-      //слушатель на перезагрузку кнопки
-  //     this._form.addEventListener('reset', () => {
-  //       setTimeout(() => {
-  //         this._toggleButton();
-  //       }, 0);
-  // });
-}
+      item.addEventListener("input", () => {
+        this._toggleButton();
+      });
+    });
+    //слушатель на перезагрузку кнопки
+    this._form.addEventListener("reset", () => {
+      console.log("toggle");
+      setTimeout(() => {
+        this._toggleButton();
+      }, 0);
+    });
+  }
 }
 const formEdit = document.forms["edit-profile-form"];
 const editProfileForm = new FormValidator(formValidationConfig, formEdit);
 editProfileForm.enableValidation();
+const cardForm = document.forms["card-form"];
+const addCardForm = new FormValidator(formValidationConfig, cardForm);
+addCardForm.enableValidation();
 
 //export {formValidationConfig, FormValidator};
