@@ -45,7 +45,7 @@
           class="popup__close popup__close_type_edit-profile"
           type="button"
         ></button>
-        <form class="card-form" name="edit-profile-form">
+        <form class="card-form" name="edit-profile-form" id="edit-profile-form">
           <h2 class="card-form__title">Редактировать профиль</h2>
           <input class="card-form__input card-form__input_type_error" type="text" name="name" id="name" placeholder="Имя" required minlength="2" maxlength="40"/>
           <span class="error" id="name-error"></span>
@@ -115,7 +115,7 @@
       </li>
     </template>
     <script type="module" src="./scripts/index.js"></script>
-
+    <script type="module" src="./scripts/FormValidator.js"></script>
     <script src="./scripts/validate.js"></script>
   </body>
 </html>

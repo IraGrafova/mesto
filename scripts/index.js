@@ -1,4 +1,5 @@
 import { initialCards, Card } from './Card.js';
+//import {formValidationConfig, FormValidator} from './FormValidator.js'
 
 
 //объявляем попапы
