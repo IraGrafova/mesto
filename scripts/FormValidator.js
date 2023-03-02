@@ -6,6 +6,7 @@ const formValidationConfig = {
   buttonDisabledClass: "card-form__save_disabled",
 };
 
+//передаем в конструктор конфигурацию и форму
 class FormValidator {
   constructor(config, form) {
     this._config = config;
@@ -34,7 +35,6 @@ class FormValidator {
 
   // функция переключения состояния кнопки (активна или заблокирована)
   _toggleButton() {
-    console.log(this._form);
     const buttonSubmit = this._form.querySelector(this._config.buttonSelector);
     const isFormValid = this._form.checkValidity(); //проверяем валидна ли форма методом checkValidity
     buttonSubmit.disabled = !isFormValid; //если форма не валидна, включить disable
@@ -57,18 +57,11 @@ class FormValidator {
     });
     //слушатель на перезагрузку кнопки
     this._form.addEventListener("reset", () => {
-      console.log("toggle");
       setTimeout(() => {
         this._toggleButton();
       }, 0);
     });
   }
 }
-const formEdit = document.forms["edit-profile-form"];
-const editProfileForm = new FormValidator(formValidationConfig, formEdit);
-editProfileForm.enableValidation();
-const cardForm = document.forms["card-form"];
-const addCardForm = new FormValidator(formValidationConfig, cardForm);
-addCardForm.enableValidation();
 
-//export {formValidationConfig, FormValidator};
+export { formValidationConfig, FormValidator };

@@ -1,12 +1,12 @@
-import { initialCards, Card } from './Card.js';
-//import {formValidationConfig, FormValidator} from './FormValidator.js'
-
+import { initialCards, Card } from "./Card.js";
+import { formValidationConfig, FormValidator } from "./FormValidator.js";
 
 //объявляем попапы
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const popupAddPicture = document.querySelector(".popup_type_add-picture");
 const popupOpenPicture = document.querySelector(".popup_type_open-picture");
 
+//находим формы
 const formEdit = document.forms["edit-profile-form"];
 const cardForm = document.forms["card-form"];
 
@@ -22,12 +22,11 @@ const profileJobInput = popupEditProfile.querySelector("#job");
 const profileName = document.querySelector(".profile-info__title");
 const profileJob = document.querySelector(".profile-info__subtitle");
 
-
 //функция открытия попапа
 const openPopup = function (popup) {
   popup.classList.add("popup_is-opened");
   popup.addEventListener("mousedown", closePopupByClickOnOverlay);
-  document.addEventListener("keydown", (handleEscape));
+  document.addEventListener("keydown", handleEscape);
 };
 
 //вешаем слушатель на кнопки открытия попапов
@@ -44,15 +43,15 @@ buttonAddCard.addEventListener("click", function () {
 const closePopup = function (popup) {
   popup.classList.remove("popup_is-opened");
   popup.removeEventListener("mousedown", closePopupByClickOnOverlay);
-  document.removeEventListener("keydown", (handleEscape));
+  document.removeEventListener("keydown", handleEscape);
 };
 
 // закрыть попап по нажатию на кнопку крестик, перебираем кнопки, вешаем слушатель на каждую
 const closeButtons = document.querySelectorAll(".popup__close");
 closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
+  const popup = button.closest(".popup");
   button.addEventListener("click", () => closePopup(popup));
-  });
+});
 
 // закрыть попап при клике на оверлей
 const closePopupByClickOnOverlay = function (event) {
@@ -79,100 +78,26 @@ function handleProfileFormSubmit(evt) {
 }
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 
-
 const formCard = document.querySelector("#form-card");
 const inputPlace = document.querySelector("#place");
 const inputLink = document.querySelector("#place-link");
 const elementsList = document.querySelector(".elements");
 
+//перебираем карточки из массива
 initialCards.forEach((item) => {
   const card = new Card(item.link, item.name); // Создадим экземпляр карточки
   const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
-  //const elementsList = document.querySelector(".elements");
-
   elementsList.prepend(cardElement); //добавляем карточку в DOM
 });
-
-// //добавление карточек на страницу
-// const elementsList = document.querySelector(".elements");
-// const initialCards = [
-//   {
-//     name: "Архыз",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-//   },
-//   {
-//     name: "Челябинская область",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-//   },
-//   {
-//     name: "Иваново",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-//   },
-//   {
-//     name: "Камчатка",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-//   },
-//   {
-//     name: "Холмогорский район",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-//   },
-//   {
-//     name: "Байкал",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-//   },
-// ];
-
-// const card = new Card
-
-
-// const popupImage = document.querySelector(".popup__image");
-// const popupCaption = document.querySelector(".popup__caption");
-// const template = document.querySelector("#to-do-element");
-// const createCard = (card) => {
-//   const cardPicture = template.content
-//     .querySelector(".element")
-//     .cloneNode(true); //контент=выбрать весь контент внутри
-//   const elementPicture = cardPicture.querySelector(".element__picture");
-//   elementPicture.src = card.link;
-//   elementPicture.alt = card.name;
-//   cardPicture.querySelector(".element__title").textContent = card.name;
-
-//   const buttonTrash = cardPicture.querySelector(".element__trash");
-//   buttonTrash.addEventListener("click", () => {
-//     cardPicture.remove();
-//   });
-//   const buttonLike = cardPicture.querySelector(".element__button-like");
-//   buttonLike.addEventListener("click", (evt) => {
-//     evt.target.classList.toggle("element__button-like_active");
-//   });
-
-//   const buttonOpenImage = cardPicture.querySelector(".button-image");
-//   buttonOpenImage.addEventListener("click", (event) => {
-//     popupImage.src = event.target.src;
-//     popupImage.alt = event.target.alt;
-//     popupCaption.textContent = event.target.alt;
-//     openPopup(popupOpenPicture);
-//   });
-
-//   return cardPicture;
-// };
 
 const renderCard = (item) => {
   const card = new Card(item.link, item.name); // Создадим экземпляр карточки
   const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
-  //const elementsList = document.querySelector(".elements");
-
   elementsList.prepend(cardElement); //добавляем карточку в DOM
 };
 
-// initialCards.forEach(renderCard);
-
-//  const formCard = document.querySelector("#form-card");
-//  const inputPlace = document.querySelector("#place");
-//  const inputLink = document.querySelector("#place-link");
-
 //функция сохранить новую карточку при нажатии на "Сохранить"
- const submitCardForm = (evt) => {
+const submitCardForm = (evt) => {
   evt.preventDefault();
   //из инпута достаем value
   const newCard = {
@@ -184,5 +109,12 @@ const renderCard = (item) => {
   evt.target.reset();
 };
 
- formCard.addEventListener("submit", submitCardForm);
-export {openPopup, popupOpenPicture};
+formCard.addEventListener("submit", submitCardForm);
+
+//валидация форм
+const editProfileForm = new FormValidator(formValidationConfig, formEdit);
+editProfileForm.enableValidation();
+const addCardForm = new FormValidator(formValidationConfig, cardForm);
+addCardForm.enableValidation();
+
+export { openPopup, popupOpenPicture };

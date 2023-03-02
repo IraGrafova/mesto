@@ -1,4 +1,5 @@
 import { openPopup, popupOpenPicture } from "./index.js";
+
 const initialCards = [
   {
     name: "Архыз",
@@ -27,13 +28,13 @@ const initialCards = [
 ];
 
 class Card {
-  static _template = document.querySelector("#to-do-element").content;
-
+  //передаем в конструктор ссылку и имя карточки
   constructor(link, name) {
     this._link = link;
     this._name = name;
   }
 
+  //получаем темплейт, клонируем, возвращаем карточку
   _getTemplate() {
     const cardPicture = document
       .querySelector("#to-do-element")
@@ -74,6 +75,7 @@ class Card {
         openPopup(popupOpenPicture);
       });
   }
+
   _handleLikeClick() {
     this._element
       .querySelector(".element__button-like")
@@ -83,11 +85,6 @@ class Card {
   _trashCard() {
     this._element.remove();
   }
-
-  _addNewCard = (item) => {
-
-  }
-
 }
 
 export { initialCards, Card };
