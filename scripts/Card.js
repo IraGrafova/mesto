@@ -1,43 +1,17 @@
-import { openPopup, popupOpenPicture } from "./index.js";
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+import { openPopup, popupOpenPicture, initialCards } from "./index.js";
 
 class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor(link, name) {
+  constructor(link, name, templateSelector) {
     this._link = link;
     this._name = name;
+    this._templateSelector = templateSelector;
   }
 
   //получаем темплейт, клонируем, возвращаем карточку
   _getTemplate() {
     const cardPicture = document
-      .querySelector("#to-do-element")
+      .querySelector(this._templateSelector)
       .content.querySelector(".element")
       .cloneNode(true);
 
@@ -48,7 +22,9 @@ class Card {
     this._element = this._getTemplate();
     this._setEventListeners(); //добавили обработчики
     this._element.querySelector(".element__picture").src = this._link;
+    this._element.querySelector(".element__picture").alt = this._name;
     this._element.querySelector(".element__title").textContent = this._name;
+
 
     return this._element;
   }
@@ -84,7 +60,8 @@ class Card {
 
   _trashCard() {
     this._element.remove();
+    this._element = null;
   }
 }
 
-export { initialCards, Card };
+export { Card };

@@ -1,4 +1,4 @@
-import { initialCards, Card } from "./Card.js";
+import { Card } from "./Card.js";
 import { formValidationConfig, FormValidator } from "./FormValidator.js";
 
 //объявляем попапы
@@ -78,23 +78,53 @@ function handleProfileFormSubmit(evt) {
 }
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
 const formCard = document.querySelector("#form-card");
 const inputPlace = document.querySelector("#place");
 const inputLink = document.querySelector("#place-link");
 const elementsList = document.querySelector(".elements");
 
-//перебираем карточки из массива
-initialCards.forEach((item) => {
-  const card = new Card(item.link, item.name); // Создадим экземпляр карточки
-  const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
-  elementsList.prepend(cardElement); //добавляем карточку в DOM
-});
+//функция создания новой карточки
+function createCard(item) {
+  const card = new Card(item.link, item.name, '#to-do-element'); // Создадим экземпляр карточки
+  return card; //возвращаем карточку наружу
+}
 
 const renderCard = (item) => {
-  const card = new Card(item.link, item.name); // Создадим экземпляр карточки
-  const cardElement = card.generateCard(); //создаем карточку и возвращаем наружу
-  elementsList.prepend(cardElement); //добавляем карточку в DOM
+  const card = createCard(item);
+  elementsList.prepend(card.generateCard()); //добавляем карточку в DOM
 };
+
+//перебираем карточки из массива
+initialCards.forEach((item) => {
+  renderCard(item);
+});
 
 //функция сохранить новую карточку при нажатии на "Сохранить"
 const submitCardForm = (evt) => {
@@ -117,4 +147,4 @@ editProfileForm.enableValidation();
 const addCardForm = new FormValidator(formValidationConfig, cardForm);
 addCardForm.enableValidation();
 
-export { openPopup, popupOpenPicture };
+export { openPopup, popupOpenPicture, initialCards };
