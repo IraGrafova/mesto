@@ -112,7 +112,7 @@ const elementsList = document.querySelector(".elements");
 
 //функция создания новой карточки
 function createCard(item) {
-  const card = new Card(item.link, item.name, '#to-do-element'); // Создадим экземпляр карточки
+  const card = new Card(item.link, item.name, "#to-do-element"); // Создадим экземпляр карточки
   return card; //возвращаем карточку наружу
 }
 

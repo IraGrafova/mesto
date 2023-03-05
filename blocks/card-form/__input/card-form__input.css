@@ -15,7 +15,7 @@
   border: 1px solid lightblue;
 }
 .card-form__input::placeholder {
-  color: black;
+  opacity: 0.3;
 }
 @media (min-width: 1280px) {
   .card-form__input {

@@ -47,11 +47,35 @@
         ></button>
         <form class="card-form" name="edit-profile-form" id="edit-profile-form">
           <h2 class="card-form__title">Редактировать профиль</h2>
-          <input class="card-form__input card-form__input_type_error" type="text" name="name" id="name" placeholder="Имя" required minlength="2" maxlength="40"/>
+          <input
+            class="card-form__input"
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Имя"
+            required
+            minlength="2"
+            maxlength="40"
+          />
           <span class="error" id="name-error"></span>
-          <input class="card-form__input card-form__input_type_error" type="text" name="job" id="job" placeholder="О себе" required minlength="2" maxlength="200"/>
+          <input
+            class="card-form__input"
+            type="text"
+            name="job"
+            id="job"
+            placeholder="О себе"
+            required
+            minlength="2"
+            maxlength="200"
+          />
           <span class="error" id="job-error"></span>
-          <button class="card-form__save card-form__save_disabled" type="submit" disabled>Сохранить</button>
+          <button
+            class="card-form__save card-form__save_disabled"
+            type="submit"
+            disabled
+          >
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
@@ -64,27 +88,31 @@
         <form class="card-form" name="card-form" id="form-card">
           <h2 class="card-form__title">Новое место</h2>
           <input
-            class="card-form__input card-form__input_type_error"
+            class="card-form__input"
             type="text"
             name="place"
             id="place"
-
             placeholder="Название"
             required
             minlength="2"
             maxlength="30"
-            />
-            <span class="error" id="place-error"></span>
+          />
+          <span class="error" id="place-error"></span>
           <input
-            class="card-form__input card-form__input_type_error"
+            class="card-form__input"
             type="url"
             name="place-link"
             id="place-link"
             placeholder="Ссылка на картинку"
             required
-            />
-            <span class="error" id="place-link-error"></span>
-          <button class="card-form__save card-form__save_disabled" type="submit" id="create-card" disabled>
+          />
+          <span class="error" id="place-link-error"></span>
+          <button
+            class="card-form__save card-form__save_disabled"
+            type="submit"
+            id="create-card"
+            disabled
+          >
             Создать
           </button>
         </form>
@@ -106,7 +134,7 @@
       <li class="element">
         <button class="element__trash"></button>
         <button class="button-image">
-          <img class="element__picture"/>
+          <img class="element__picture" />
         </button>
         <div class="element__label">
           <h2 class="element__title"></h2>

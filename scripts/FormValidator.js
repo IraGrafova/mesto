@@ -13,7 +13,6 @@ class FormValidator {
     this._toggleButton();
   }
 
-
   //скрыть сообщение об ошибке
   _hideInputError(item) {
     this._inputId = item.id;
