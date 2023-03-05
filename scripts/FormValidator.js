@@ -1,16 +1,11 @@
-const formValidationConfig = {
-  formSelector: ".card-form",
-  inputSelector: ".card-form__input",
-  errorClass: "card-form__input_type_error",
-  buttonSelector: ".card-form__save",
-  buttonDisabledClass: "card-form__save_disabled",
-};
+import { formValidationConfig } from "./index.js";
 
 //передаем в конструктор конфигурацию и форму
 class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
+    this._buttonSubmit = this._form.querySelector(this._config.buttonSelector);
   }
 
   enableValidation() {
@@ -18,27 +13,38 @@ class FormValidator {
     this._toggleButton();
   }
 
+
+  //скрыть сообщение об ошибке
+  _hideInputError(item) {
+    this._inputId = item.id;
+    this._errorElement = this._form.querySelector(`#${this._inputId}-error`);
+    item.classList.remove(this._config.errorClass);
+    this._errorElement.textContent = "";
+  }
+
+  //показать сообщение об ошибке
+  _showInputError(item) {
+    this._inputId = item.id;
+    this._errorElement = this._form.querySelector(`#${this._inputId}-error`);
+    item.classList.add(this._config.errorClass);
+    this._errorElement.textContent = item.validationMessage;
+  }
+
   //проверка валидности полей инпутов
   _handleFormInput(item) {
     //получаем в item инпут из перебора массива в слушателе _addInputListeners()
-    const inputId = item.id;
-    const errorElement = document.querySelector(`#${inputId}-error`);
-
     if (item.validity.valid) {
-      item.classList.remove(this._config.errorClass);
-      errorElement.textContent = "";
+      this._hideInputError(item);
     } else {
-      item.classList.add(this._config.errorClass);
-      errorElement.textContent = item.validationMessage;
+      this._showInputError(item);
     }
   }
 
   // функция переключения состояния кнопки (активна или заблокирована)
   _toggleButton() {
-    const buttonSubmit = this._form.querySelector(this._config.buttonSelector);
     const isFormValid = this._form.checkValidity(); //проверяем валидна ли форма методом checkValidity
-    buttonSubmit.disabled = !isFormValid; //если форма не валидна, включить disable
-    buttonSubmit.classList.toggle(
+    this._buttonSubmit.disabled = !isFormValid; //если форма не валидна, включить disable
+    this._buttonSubmit.classList.toggle(
       this._config.buttonDisabledClass,
       !isFormValid
     );
@@ -46,12 +52,10 @@ class FormValidator {
 
   //все слушатели
   _addInputListeners() {
-    this._form.querySelectorAll(".card-form__input").forEach((item) => {
+    this._form.querySelectorAll(this._config.inputSelector).forEach((item) => {
       //слушатель на инпуты
       item.addEventListener("input", () => {
         this._handleFormInput(item);
-      });
-      item.addEventListener("input", () => {
         this._toggleButton();
       });
     });

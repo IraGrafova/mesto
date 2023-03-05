@@ -1,5 +1,5 @@
 import { Card } from "./Card.js";
-import { formValidationConfig, FormValidator } from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 
 //объявляем попапы
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
@@ -141,10 +141,18 @@ const submitCardForm = (evt) => {
 
 formCard.addEventListener("submit", submitCardForm);
 
+const formValidationConfig = {
+  formSelector: ".card-form",
+  inputSelector: ".card-form__input",
+  errorClass: "card-form__input_type_error",
+  buttonSelector: ".card-form__save",
+  buttonDisabledClass: "card-form__save_disabled",
+};
+
 //валидация форм
 const editProfileForm = new FormValidator(formValidationConfig, formEdit);
 editProfileForm.enableValidation();
 const addCardForm = new FormValidator(formValidationConfig, cardForm);
 addCardForm.enableValidation();
 
-export { openPopup, popupOpenPicture, initialCards };
+export { openPopup, popupOpenPicture, initialCards, formValidationConfig };

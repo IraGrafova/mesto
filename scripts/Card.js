@@ -25,6 +25,14 @@ class Card {
     this._element.querySelector(".element__picture").alt = this._name;
     this._element.querySelector(".element__title").textContent = this._name;
 
+    //находим данные попапа открытия карточек
+    document.querySelector(".popup__image").src = this._link;
+    document.querySelector(".popup__image").alt = this._name;
+    document.querySelector(".popup__caption").textContent = this._name;
+
+    //находим кнопку лайка
+    this._likeButton = this._element.querySelector(".element__button-like");
+    this._card = this._element;
 
     return this._element;
   }
@@ -45,22 +53,22 @@ class Card {
     this._element
       .querySelector(".button-image")
       .addEventListener("click", (event) => {
-        document.querySelector(".popup__image").src = this._link;
-        document.querySelector(".popup__image").alt = this._name;
-        document.querySelector(".popup__caption").textContent = this._name;
-        openPopup(popupOpenPicture);
+        this._openCard();
       });
   }
 
   _handleLikeClick() {
-    this._element
-      .querySelector(".element__button-like")
+    this._likeButton
       .classList.toggle("element__button-like_active");
   }
 
+  _openCard() {
+    openPopup(popupOpenPicture);
+  }
+
   _trashCard() {
-    this._element.remove();
-    this._element = null;
+    this._card.remove();
+    this._card = null;
   }
 }
 
