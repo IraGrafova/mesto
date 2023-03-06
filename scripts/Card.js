@@ -6,6 +6,11 @@ class Card {
     this._link = link;
     this._name = name;
     this._templateSelector = templateSelector;
+
+        //находим данные попапа открытия карточек
+        this._popupImageSrc = document.querySelector(".popup__image");
+        this._popupImageAlt = document.querySelector(".popup__image");
+        this._popupImageCaption = document.querySelector(".popup__caption");
   }
 
   //получаем темплейт, клонируем, возвращаем карточку
@@ -25,10 +30,7 @@ class Card {
     this._element.querySelector(".element__picture").alt = this._name;
     this._element.querySelector(".element__title").textContent = this._name;
 
-    //находим данные попапа открытия карточек
-    document.querySelector(".popup__image").src = this._link;
-    document.querySelector(".popup__image").alt = this._name;
-    document.querySelector(".popup__caption").textContent = this._name;
+
 
     //находим кнопку лайка
     this._likeButton = this._element.querySelector(".element__button-like");
@@ -63,6 +65,9 @@ class Card {
   }
 
   _openCard() {
+    this._popupImageSrc.src = this._link;
+    this._popupImageAlt.alt = this._name;
+    this._popupImageCaption.textContent = this._name;
     openPopup(popupOpenPicture);
   }
 
