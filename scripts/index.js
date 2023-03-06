@@ -113,12 +113,12 @@ const elementsList = document.querySelector(".elements");
 //функция создания новой карточки
 function createCard(item) {
   const card = new Card(item.link, item.name, "#to-do-element"); // Создадим экземпляр карточки
-  return card; //возвращаем карточку наружу
+  return card.generateCard(); //возвращаем карточку наружу
 }
 
 const renderCard = (item) => {
   const card = createCard(item);
-  elementsList.prepend(card.generateCard()); //добавляем карточку в DOM
+  elementsList.prepend(card); //добавляем карточку в DOM
 };
 
 //перебираем карточки из массива
