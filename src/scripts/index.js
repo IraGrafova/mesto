@@ -1,6 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { initialCards } from './constans.js'
+import { initialCards } from './constans.js';
+import { Section } from './Section.js';
 
 import '../pages/index.css'
 
@@ -86,7 +87,11 @@ formEdit.addEventListener("submit", handleProfileFormSubmit);
 const formCard = document.querySelector("#form-card");
 const inputPlace = document.querySelector("#place");
 const inputLink = document.querySelector("#place-link");
-const elementsList = document.querySelector(".elements");
+const elementsList = ".elements";
+
+
+
+
 
 //функция создания новой карточки
 function createCard(item) {
@@ -94,15 +99,24 @@ function createCard(item) {
   return card.generateCard(); //возвращаем карточку наружу
 }
 
-const renderCard = (item) => {
-  const card = createCard(item);
-  elementsList.prepend(card); //добавляем карточку в DOM
-};
+function renderCard(item) {
+  const cardElement = createCard(item) // подумайте как реализовать эту функцию, она просто создает карточку и возвращает её html представление
+  cardSection.addItem(cardElement);
+}
 
-//перебираем карточки из массива
-initialCards.forEach((item) => {
-  renderCard(item);
-});
+const cardSection = new Section({items: initialCards, renderer: renderCard}, elementsList);
+
+cardSection.renderItems();
+
+// const renderCard = (item) => {
+//   const card = createCard(item);
+//   elementsList.prepend(card); //добавляем карточку в DOM
+// };
+
+// //перебираем карточки из массива
+// initialCards.forEach((item) => {
+//   renderCard(item);
+// });
 
 //функция сохранить новую карточку при нажатии на "Сохранить"
 const submitCardForm = (evt) => {
@@ -133,4 +147,4 @@ editProfileForm.enableValidation();
 const addCardForm = new FormValidator(formValidationConfig, cardForm);
 addCardForm.enableValidation();
 
-export { openPopup, popupOpenPicture, initialCards, formValidationConfig };
+export { openPopup, popupOpenPicture, formValidationConfig };
