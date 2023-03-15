@@ -1,11 +1,12 @@
-import { openPopup, popupOpenPicture, initialCards } from "./index.js";
-
+//import { openPopup, popupOpenPicture, initialCards } from "./index.js";
+import { popupOpenPicture, initialCards, handleCardClick } from "./index.js";
 class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor(link, name, templateSelector) {
-    this._link = link;
-    this._name = name;
+  constructor({data, handleCardClick}, templateSelector) {
+    this._link = data.link;
+    this._name = data.name;
     this._templateSelector = templateSelector;
+    this.handleCardClick = handleCardClick;
 
     //находим данные попапа открытия карточек
     this._popupImageSrc = document.querySelector(".popup__image");
@@ -50,10 +51,13 @@ class Card {
         this._trashCard();
       });
 
+      //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
     this._element
       .querySelector(".button-image")
       .addEventListener("click", (event) => {
-        this._openCard();
+          //console.log(this.handleCardClick);
+          //this.handleCardClick();
+        this.handleCardClick(this._link, this._name);
       });
   }
 
@@ -61,12 +65,12 @@ class Card {
     this._likeButton.classList.toggle("element__button-like_active");
   }
 
-  _openCard() {
-    this._popupImageSrc.src = this._link;
-    this._popupImageAlt.alt = this._name;
-    this._popupImageCaption.textContent = this._name;
-    openPopup(popupOpenPicture);
-  }
+  // _openCard() {
+  //   this._popupImageSrc.src = this._link;
+  //   this._popupImageAlt.alt = this._name;
+  //   this._popupImageCaption.textContent = this._name;
+  //   openPopup(popupOpenPicture);
+  // }
 
   _trashCard() {
     this._card.remove();
