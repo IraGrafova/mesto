@@ -22,9 +22,8 @@ export class Popup {
   };
 
   setEventListeners() {
-    const closeButtons = document.querySelectorAll(".popup__close");
-    closeButtons.forEach((button) => {
-      button.addEventListener("click", this._close);
-  });
+    const closeButton = this._popupSelector.querySelector(".popup__close");
+    console.log(closeButton);
+   closeButton.addEventListener('click', () => {this.close()});
 }
 }

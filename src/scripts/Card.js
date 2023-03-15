@@ -55,8 +55,6 @@ class Card {
     this._element
       .querySelector(".button-image")
       .addEventListener("click", (event) => {
-          //console.log(this.handleCardClick);
-          //this.handleCardClick();
         this.handleCardClick(this._link, this._name);
       });
   }
@@ -64,13 +62,6 @@ class Card {
   _handleLikeClick() {
     this._likeButton.classList.toggle("element__button-like_active");
   }
-
-  // _openCard() {
-  //   this._popupImageSrc.src = this._link;
-  //   this._popupImageAlt.alt = this._name;
-  //   this._popupImageCaption.textContent = this._name;
-  //   openPopup(popupOpenPicture);
-  // }
 
   _trashCard() {
     this._card.remove();

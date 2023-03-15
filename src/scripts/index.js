@@ -4,6 +4,7 @@ import { initialCards } from './constans.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage';
+import { PopupWithForm } from './PopupWithForm';
 
 import '../pages/index.css'
 
@@ -47,25 +48,25 @@ buttonAddCard.addEventListener("click", function () {
 });
 
 // функция закрытия попапов
-const closePopup = function (popup) {
+//const closePopup = function (popup) {
   // popup.classList.remove("popup_is-opened");
   // popup.removeEventListener("mousedown", closePopupByClickOnOverlay);
   // document.removeEventListener("keydown", handleEscape);
-};
+//};
 
 // закрыть попап по нажатию на кнопку крестик, перебираем кнопки, вешаем слушатель на каждую
-const closeButtons = document.querySelectorAll(".popup__close");
-closeButtons.forEach((button) => {
-  const popup = button.closest(".popup");
-  button.addEventListener("click", () => closePopup(popup));
-});
+// const closeButtons = document.querySelectorAll(".popup__close");
+// closeButtons.forEach((button) => {
+//   const popup = button.closest(".popup");
+//   button.addEventListener("click", () => closePopup(popup));
+// });
 
 // закрыть попап при клике на оверлей
-const closePopupByClickOnOverlay = function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup(event.currentTarget);
-  }
-};
+// const closePopupByClickOnOverlay = function (event) {
+//   if (event.target === event.currentTarget) {
+//     closePopup(event.currentTarget);
+//   }
+// };
 
 // закрыть попап при клике на Escape
 function handleEscape(evt) {
@@ -116,7 +117,9 @@ cardSection.renderItems();
 
 //попробуем открыть попап карточки
 
-const openPopup = new Popup (popupOpenPicture);
+const popupElementOpenPicture = new Popup (popupOpenPicture); //пока не использую
+
+popupElementOpenPicture.setEventListeners();
 
 const imagePopup = new PopupWithImage (popupOpenPicture);
 
@@ -155,11 +158,30 @@ const submitCardForm = (evt) => {
     link: inputLink.value,
   };
   renderCard(newCard);
-  closePopup(popupAddPicture);
+  //closePopup(popupAddPicture);
   evt.target.reset();
 };
 
 formCard.addEventListener("submit", submitCardForm);
+
+
+const popupProfile = new  PopupWithForm (popupEditProfile, handleProfileFormSubmit);
+
+//popupProfile.listenersPopupWithForm();
+
+const popupAddCard = new PopupWithForm (popupAddPicture, submitCardForm);
+
+
+
+
+// const popupEditProfile = document.querySelector(".popup_type_edit-profile");
+// const popupAddPicture = document.querySelector(".popup_type_add-picture");
+// const popupOpenPicture = document.querySelector(".popup_type_open-picture");
+// //находим формы
+// const formEdit = document.forms["edit-profile-form"];
+// const cardForm = document.forms["card-form"];
+
+
 
 const formValidationConfig = {
   formSelector: ".card-form",
