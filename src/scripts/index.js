@@ -122,10 +122,7 @@ const imagePopup = new PopupWithImage (popupOpenPicture);
 
 
 function handleCardClick(link, name) {
-  imagePopup.openImagePopup(link, name); //получает данные карточки из класса кард
-
-  // openPopup.open();
-  //console.log(link, name);
+  imagePopup.openImagePopup(link, name); //получает данные карточки из класса кард и передает их в класс PopupWithImage
 };
 
 
