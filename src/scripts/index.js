@@ -5,6 +5,7 @@ import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage';
 import { PopupWithForm } from './PopupWithForm';
+import { UserInfo } from './UserInfo.js';
 
 import '../pages/index.css'
 
@@ -69,22 +70,12 @@ const profileJob = document.querySelector(".profile-info__subtitle");
 // };
 
 // закрыть попап при клике на Escape
-function handleEscape(evt) {
+//function handleEscape(evt) {
   // if (evt.key === "Escape") {
   //   const openedPopup = document.querySelector(".popup_is-opened");
   //   closePopup(openedPopup);
   // }
-}
-
-//функция сохранить изменения данных профиля
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobInput.value;
-  closePopup(popupEditProfile);
-  evt.target.reset();
-}
-formEdit.addEventListener("submit", handleProfileFormSubmit);
+//}
 
 
 
@@ -113,9 +104,9 @@ const cardSection = new Section({items: initialCards, renderer: renderCard}, ele
 cardSection.renderItems();
 
 
-function createNewCard() {
-  const newPicture = new PopupWithForm (popupAddPicture, submitCardForm);
-}
+// function createNewCard() {
+//   const newPicture = new PopupWithForm (popupAddPicture, submitCardForm);
+// }
 
 
 
@@ -163,28 +154,88 @@ const submitCardForm = (evt) => {
   };
   renderCard(newCard);
   //closePopup(popupAddPicture);
-  evt.target.reset();
+  //evt.target.reset();
 };
 
-formCard.addEventListener("submit", submitCardForm);
+//formCard.addEventListener("submit", submitCardForm);
+
+
+
+
+// //функция сохранить изменения данных профиля
+// function handleProfileFormSubmit(evt) {
+//   evt.preventDefault();
+//   profileName.textContent = profileNameInput.value;
+//   profileJob.textContent = profileJobInput.value;
+//   closePopup(popupEditProfile);
+//   evt.target.reset();
+// }
+// formEdit.addEventListener("submit", handleProfileFormSubmit);
 
 
 
 
 
-// const popupProfile = new  PopupWithForm (popupEditProfile, handleProfileFormSubmit);
+const newUserInfo = new UserInfo ({profileNameSelector: '.profile-info__title', descriptionSelector: '.profile-info__subtitle'});
+//newUserInfo.getUserInfo();
+//
+console.log(newUserInfo.getUserInfo())
+// !!! Нужно реализовать сабмит форм, потом вешаем слушатель на кнопку открытия попапа, запускаем getUserInfo(), чтобы получить данные из разметки и открываем попап
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  //newUserInfo.setUserInfo(); // должен получить объект с именем и описанием
+  //profileName.textContent = profileNameInput.value;
+  //profileJob.textContent = profileJobInput.value;
+  //closePopup(popupEditProfile);
+  //evt.target.reset();
+}
+
+ const popupProfile = new  PopupWithForm (".popup_type_edit-profile", handleProfileFormSubmit);
 
 // popupProfile.setEventListeners();
 // popupProfile.close()
 
-// buttonEditProfile.addEventListener('click', () => {popupProfile.open()});
-// buttonAddCard.addEventListener('click', () => {popupAddCard.open()});
+buttonEditProfile.addEventListener('click', () => { //перед открытием попапа передаем данные из разметки в инпуты, открываем попап
+ // по моей логике при клике методом getUserInfo() получем объект и значение этого объекта ставим в инпуты, затем открываем попап
+  const info = newUserInfo.getUserInfo();
+  profileNameInput.value = info.name;
+  profileJobInput.value = info.description;
+  popupProfile.open();
+});
+//
 
 
 
-// const popupAddCard = new PopupWithForm (popupAddPicture, submitCardForm);
+const popupAddCard = new PopupWithForm (".popup_type_add-picture", submitCardForm);
 
-// popupAddCard.setEventListeners();
+buttonAddCard.addEventListener('click', () => {popupAddCard.open()});
+
+
+
+popupAddCard.setEventListeners();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const popupEditProfile = document.querySelector(".popup_type_edit-profile");
