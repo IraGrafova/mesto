@@ -12,21 +12,23 @@ export class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     // this._buttonEditProfile = document.querySelector(".profile-info__edit-button");
     // this._buttonAddCard = document.querySelector(".add-button");
-   // console.log(super(popupSelector))
-
+   console.log(this._callbackSubmitForm)
+   this._formEdit = document.forms["edit-profile-form"];
    // this._cardForm = document.forms["card-form"];
    // this._form = super.popupSelector.querySelector('.card-form');
 
   }
 
-  // _getInputValues() {
-  //   evt.preventDefault(); //сброс автоматической перезагрузки страницы
-  // // profileName.textContent = profileNameInput.value;
-  // // profileJob.textContent = profileJobInput.value;
-  // // closePopup(popupEditProfile);
-  // // evt.target.reset();
+  _getInputValues() {
+    evt.preventDefault(); //сброс автоматической перезагрузки страницы
+    //this._callbackSubmitForm
 
-  // }
+  // profileName.textContent = profileNameInput.value;
+  // profileJob.textContent = profileJobInput.value;
+  // closePopup(popupEditProfile);
+  // evt.target.reset();
+
+   }
 
   setEventListeners() {
     super.setEventListeners();
@@ -39,6 +41,6 @@ export class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._callbackSubmitForm.reset();
+    this._formEdit.reset();
   }
 }

@@ -152,9 +152,10 @@ const submitCardForm = (evt) => {
     name: inputPlace.value,
     link: inputLink.value,
   };
+  //evt.target.reset();
   renderCard(newCard);
   //closePopup(popupAddPicture);
-  //evt.target.reset();
+
 };
 
 //formCard.addEventListener("submit", submitCardForm);
@@ -179,21 +180,24 @@ const submitCardForm = (evt) => {
 const newUserInfo = new UserInfo ({profileNameSelector: '.profile-info__title', descriptionSelector: '.profile-info__subtitle'});
 //newUserInfo.getUserInfo();
 //
-console.log(newUserInfo.getUserInfo())
+//console.log(newUserInfo.getUserInfo())
 // !!! Нужно реализовать сабмит форм, потом вешаем слушатель на кнопку открытия попапа, запускаем getUserInfo(), чтобы получить данные из разметки и открываем попап
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  //newUserInfo.setUserInfo(); // должен получить объект с именем и описанием
-  //profileName.textContent = profileNameInput.value;
-  //profileJob.textContent = profileJobInput.value;
+  newUserInfo.setUserInfo(); // должен получить объект с именем и описанием
+  profileName.textContent = profileNameInput.value;
+  profileJob.textContent = profileJobInput.value;
   //closePopup(popupEditProfile);
   //evt.target.reset();
+
+return handleProfileFormSubmit;
+
 }
 
  const popupProfile = new  PopupWithForm (".popup_type_edit-profile", handleProfileFormSubmit);
 
-// popupProfile.setEventListeners();
+ popupProfile.setEventListeners();
 // popupProfile.close()
 
 buttonEditProfile.addEventListener('click', () => { //перед открытием попапа передаем данные из разметки в инпуты, открываем попап
@@ -201,6 +205,7 @@ buttonEditProfile.addEventListener('click', () => { //перед открыти�
   const info = newUserInfo.getUserInfo();
   profileNameInput.value = info.name;
   profileJobInput.value = info.description;
+  editProfileForm.resetValidation();
   popupProfile.open();
 });
 //

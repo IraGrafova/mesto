@@ -13,6 +13,10 @@ class FormValidator {
     this._toggleButton();
   }
 
+  resetValidation() {
+    this._toggleButton();
+  }
+
   //скрыть сообщение об ошибке
   _hideInputError(item) {
     this._inputId = item.id;
