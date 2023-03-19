@@ -25,7 +25,7 @@ const buttonAddCard = document.querySelector(".add-button");
 
 //объявляем, что поля имя профиля и профессия заполняются из текстового значения в html
 const profileNameInput = popupEditProfile.querySelector("#name");
-const profileJobInput = popupEditProfile.querySelector("#job");
+const profileDescriptionInput = popupEditProfile.querySelector("#job");
 
 //объявляем имя профиля и профессию
 const profileName = document.querySelector(".profile-info__title");
@@ -178,41 +178,49 @@ const submitCardForm = (evt) => {
 
 
 const newUserInfo = new UserInfo ({profileNameSelector: '.profile-info__title', descriptionSelector: '.profile-info__subtitle'});
-//newUserInfo.getUserInfo();
-//
-//console.log(newUserInfo.getUserInfo())
-// !!! Нужно реализовать сабмит форм, потом вешаем слушатель на кнопку открытия попапа, запускаем getUserInfo(), чтобы получить данные из разметки и открываем попап
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  newUserInfo.setUserInfo(); // должен получить объект с именем и описанием
-  profileName.textContent = profileNameInput.value;
-  profileJob.textContent = profileJobInput.value;
-  //closePopup(popupEditProfile);
-  //evt.target.reset();
+// function handleProfileFormSubmit(evt) {
+//   // const userInfo = { //создали объект, в котором записали значения инпутов
+//   //   profileName: profileNameInput.value,
+//   //   profileDescription: profileDescriptionInput.value};
+//     newUserInfo.setUserInfo(popupProfile.setEventListeners()); // должен получить объект с именем и описанием
 
-return handleProfileFormSubmit;
+// return handleProfileFormSubmit;
 
-}
+// }
 
- const popupProfile = new  PopupWithForm (".popup_type_edit-profile", handleProfileFormSubmit);
+ const popupProfile = new  PopupWithForm (".popup_type_edit-profile", {callbackSubmitForm: (inputValues) => { //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
+  newUserInfo.setUserInfo(inputValues);
+
+  //console.log(inputValues)
+  }
+ });
 
  popupProfile.setEventListeners();
-// popupProfile.close()
+
 
 buttonEditProfile.addEventListener('click', () => { //перед открытием попапа передаем данные из разметки в инпуты, открываем попап
  // по моей логике при клике методом getUserInfo() получем объект и значение этого объекта ставим в инпуты, затем открываем попап
   const info = newUserInfo.getUserInfo();
   profileNameInput.value = info.name;
-  profileJobInput.value = info.description;
+  profileDescriptionInput.value = info.description;
   editProfileForm.resetValidation();
   popupProfile.open();
 });
 //
 
+// const profileNameInput = popupEditProfile.querySelector("#name");
+// const profileDescriptionInput = popupEditProfile.querySelector("#job");
 
-
-const popupAddCard = new PopupWithForm (".popup_type_add-picture", submitCardForm);
+const popupAddCard = new PopupWithForm (".popup_type_add-picture", {callbackSubmitForm: (inputValues) => { //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
+  const newCard = {
+    name: inputPlace.value,
+    link: inputLink.value,
+  };
+  //evt.target.reset();
+  renderCard(newCard);
+}
+ });
 
 buttonAddCard.addEventListener('click', () => {popupAddCard.open()});
 

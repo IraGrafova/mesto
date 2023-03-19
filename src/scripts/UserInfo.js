@@ -8,16 +8,21 @@ export class UserInfo {
   }
 
     getUserInfo() {
-      //текст контент объекта должен передаться в инпут
+      // собирает значения в объект
+      //текст контент разметки html должен передаться в инпут
       const userInfo = {
         name: this._profileName.textContent,
         description: this._description.textContent
       };
+      // console.log(userInfo)
         return userInfo;
+
     }
 
-    setUserInfo({userInfo}) { //получает объект с ключами и устанавливает их в разметку
-      this._userInfo.name.textContent = userInfo.name;
-      this._userInfo.description = userInfo.description;
+    setUserInfo(inputValues) { //получает объект с ключами и устанавливает их в разметку
+    // console.log(inputValues.name)
+     //console.log(this.getUserInfo)
+     this._profileName.textContent = inputValues.name;
+     this._description.textContent = inputValues.description;
     }
 }

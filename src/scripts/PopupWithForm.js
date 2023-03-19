@@ -6,41 +6,40 @@ import { Popup } from "./Popup.js";
 
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, callbackSubmitForm) {
+  constructor(popup, {callbackSubmitForm}) {
 
-    super(popupSelector);
+    (super(popup));
+
     this._callbackSubmitForm = callbackSubmitForm;
-    // this._buttonEditProfile = document.querySelector(".profile-info__edit-button");
-    // this._buttonAddCard = document.querySelector(".add-button");
-   console.log(this._callbackSubmitForm)
-   this._formEdit = document.forms["edit-profile-form"];
-   // this._cardForm = document.forms["card-form"];
-   // this._form = super.popupSelector.querySelector('.card-form');
-
+    this._form = this._popup.querySelector('.card-form');
+    this._inputs = this._form.querySelectorAll('.card-form__input');
   }
 
+  //получить данные всех полей формы
   _getInputValues() {
-    evt.preventDefault(); //сброс автоматической перезагрузки страницы
-    //this._callbackSubmitForm
-
-  // profileName.textContent = profileNameInput.value;
-  // profileJob.textContent = profileJobInput.value;
-  // closePopup(popupEditProfile);
-  // evt.target.reset();
+    //создадим пустой объект, в который будем помещать данные всех инпутов
+      this._inputValues = {};
+      this._inputs.forEach(input => { //перебираем все формы
+        this._inputValues[input.name] = input.value;  //у каждого inputa есть атрибут name, благодаря такой записи мы создаем объект где свойство это name, а значение это значение inputa.Пример Input с name="job": {job: input.value}
+      });
+      //console.log(this._inputValues)
+      return this._inputValues;  //возвращаем значения инпутов
 
    }
 
   setEventListeners() {
     super.setEventListeners();
-
-
-// const buttonSubmit = super.popupSelector.querySelector('.card-form__save');
-//super.popupSelector.addEventListener('submit', () => {this._getInputValues()});
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._callbackSubmitForm(this._getInputValues());
+      //console.log(this._getInputValues())
+      this.close();
+    });
 
   }
 
   close() {
     super.close();
-    this._formEdit.reset();
+    this._form.reset();
   }
 }
