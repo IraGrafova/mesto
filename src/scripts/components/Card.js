@@ -1,8 +1,6 @@
-//import { openPopup, popupOpenPicture, initialCards } from "./index.js";
-import { popupOpenPicture, initialCards, handleCardClick } from "./index.js";
-class Card {
+export class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor({data, handleCardClick}, templateSelector) {
+  constructor({ data, handleCardClick }, templateSelector) {
     this._link = data.link;
     this._name = data.name;
     this._templateSelector = templateSelector;
@@ -51,7 +49,7 @@ class Card {
         this._trashCard();
       });
 
-      //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
+    //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
     this._element
       .querySelector(".button-image")
       .addEventListener("click", (event) => {
@@ -68,5 +66,3 @@ class Card {
     this._card = null;
   }
 }
-
-export { Card };

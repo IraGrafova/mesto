@@ -1,13 +1,13 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { initialCards } from './constans.js';
-import { Section } from './Section.js';
-import { Popup } from './Popup.js';
-import { PopupWithImage } from './PopupWithImage';
-import { PopupWithForm } from './PopupWithForm';
-import { UserInfo } from './UserInfo.js';
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { initialCards } from '../utils/constans.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage';
+import { PopupWithForm } from '../components/PopupWithForm';
+import { UserInfo } from '../components/UserInfo.js';
 
-import '../pages/index.css'
+import '../../pages/index.css'
 
 //объявляем попапы
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");

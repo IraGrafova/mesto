@@ -1,7 +1,5 @@
-import { formValidationConfig } from "./index.js";
-
 //передаем в конструктор конфигурацию и форму
-class FormValidator {
+export class FormValidator {
   constructor(config, form) {
     this._config = config;
     this._form = form;
@@ -70,5 +68,3 @@ class FormValidator {
     });
   }
 }
-
-export { formValidationConfig, FormValidator };
