@@ -3,14 +3,10 @@ import { FormValidator } from "../components/FormValidator.js";
 import {
   initialCards,
   formValidationConfig,
-  inputPlace,
-  inputLink,
   formEdit,
   cardForm,
   buttonEditProfile,
   buttonAddCard,
-  profileNameInput,
-  profileDescriptionInput,
   elementsListSelector,
 } from "../utils/constans.js";
 import { Section } from "../components/Section.js";
@@ -48,9 +44,6 @@ cardSection.renderItems();
 //попап с изображением
 
 //открыть попап - крупное изображение карточки
-const popupElementOpenPicture = new Popup(".popup_type_open-picture");
-
-popupElementOpenPicture.setEventListeners();
 
 const imagePopup = new PopupWithImage(".popup_type_open-picture");
 
@@ -58,6 +51,7 @@ function handleCardClick(link, name) {
   imagePopup.openImagePopup(link, name); //получает данные карточки из класса кард и передает их в класс PopupWithImage
 }
 
+imagePopup.setEventListeners();
 
 //редактирование данных профиля
 
@@ -82,8 +76,7 @@ buttonEditProfile.addEventListener("click", () => {
   //перед открытием попапа передаем данные из разметки в инпуты, открываем попап
   //при клике методом getUserInfo() получаем объект и значение этого объекта ставим в инпуты, затем открываем попап
   const info = newUserInfo.getUserInfo();
-  profileNameInput.value = info.name;
-  profileDescriptionInput.value = info.description;
+  popupProfile.setinputValues(info);
   editProfileForm.resetValidation();
   popupProfile.open();
 });
@@ -93,13 +86,9 @@ buttonEditProfile.addEventListener("click", () => {
 
 //создаем экземпляр класса
 const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
-  callbackSubmitForm: () => {
-    //callbackSubmitForm передает получает значения инпутов из PopupWithForm
-    const newCard = {
-      name: inputPlace.value,
-      link: inputLink.value,
-    };
-    renderCard(newCard);
+  callbackSubmitForm: (inputValues) => {
+    //callbackSubmitForm передает значения инпутов из PopupWithForm
+    renderCard(inputValues);
   },
 });
 

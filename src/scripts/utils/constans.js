@@ -33,14 +33,6 @@ const formValidationConfig = {
   buttonDisabledClass: "card-form__save_disabled",
 };
 
-//инпуты попапа добавления карточек
-const inputPlace = document.querySelector("#place");
-const inputLink = document.querySelector("#place-link");
-
-//инпуты попапа редактирования профиля
-const profileNameInput = document.querySelector("#name");
-const profileDescriptionInput = document.querySelector("#job");
-
 //находим формы
 const formEdit = document.forms["edit-profile-form"];
 const cardForm = document.forms["card-form"];
@@ -55,13 +47,9 @@ const elementsListSelector = ".elements";
 export {
   initialCards,
   formValidationConfig,
-  inputPlace,
-  inputLink,
   formEdit,
   cardForm,
   buttonEditProfile,
   buttonAddCard,
-  profileNameInput,
-  profileDescriptionInput,
   elementsListSelector,
 };
