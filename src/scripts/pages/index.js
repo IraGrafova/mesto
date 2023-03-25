@@ -11,34 +11,35 @@ import {
 } from "../utils/constans.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
-import { PopupWithImage } from "../components/PopupWithImage";
-import { PopupWithForm } from "../components/PopupWithForm";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 
 import "../../pages/index.css";
 
 
 //создание начальных карточек
 
-//функция создания новой карточки
-function createCard(item) {
-  const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
-  return card.generateCard(); //возвращаем карточку наружу
-}
+// //функция создания новой карточки
+// function createCard(item) {
+//   const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
+//   return card.generateCard(); //возвращаем карточку наружу
+// }
 
-//создаем карточку и добавляем ее на страницу
-function renderCard(item) {
-  const cardElement = createCard(item);
-  cardSection.addItem(cardElement);
-}
+// //создаем карточку и добавляем ее на страницу
+// function renderCard(item) {
+//   const cardElement = createCard(item);
+//   cardSection.addItem(cardElement);
+// }
 
-//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
-const cardSection = new Section(
-  { items: initialCards, renderer: renderCard },
-  elementsListSelector
-);
+// //создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+// const cardSection = new Section(
+//   { items: initialCards, renderer: renderCard },
+//   elementsListSelector
+// );
 
-cardSection.renderItems();
+// cardSection.renderItems();
 
 
 //попап с изображением
@@ -104,3 +105,38 @@ const editProfileForm = new FormValidator(formValidationConfig, formEdit);
 editProfileForm.enableValidation();
 const addCardForm = new FormValidator(formValidationConfig, cardForm);
 addCardForm.enableValidation();
+
+//функция создания новой карточки
+function createCard(item) {
+  const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
+  return card.generateCard(); //возвращаем карточку наружу
+}
+
+//жкземпляр класса Api, передаем ему в качестве объекта адрес и токен
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62/cards',
+  headers: {
+    'content-type': 'application/json',
+    authorization: 'e31129f1-5493-4dd7-bb19-51cc3d3b29e6'
+  }
+});
+
+//вызываем метод getAllCards() (получить все карточки)
+const cards = api.getAllCards();
+cards.then(data => {
+
+//создаем карточку и добавляем ее на страницу
+function renderCard(item) {
+  const cardElement = createCard(item);
+  cardSection.addItem(cardElement);
+}
+
+//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+const cardSection = new Section(
+  { items: data, renderer: renderCard },
+  elementsListSelector
+);
+
+cardSection.renderItems();
+})
+.catch((err) => {alert(err)});
