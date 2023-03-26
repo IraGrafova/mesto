@@ -56,21 +56,22 @@ imagePopup.setEventListeners();
 
 //редактирование данных профиля
 
-//создаем экземпляр класса, передаем в него селекторы html разметки
-const newUserInfo = new UserInfo({
-  profileNameSelector: ".profile-info__title",
-  descriptionSelector: ".profile-info__subtitle",
-});
+// //создаем экземпляр класса, передаем в него селекторы html разметки
+// const newUserInfo = new UserInfo({
+//   profileNameSelector: ".profile-info__title",
+//   descriptionSelector: ".profile-info__subtitle",
+//   api:
+// });
 
 //создаем экземпляр класса
-const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
-  callbackSubmitForm: (inputValues) => {
-    //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
-    newUserInfo.setUserInfo(inputValues);
-  },
-});
+// const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
+//   callbackSubmitForm: (inputValues) => {
+//     //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
+//     newUserInfo.setUserInfo(inputValues);
+//   },
+// });
 
-popupProfile.setEventListeners();
+//popupProfile.setEventListeners();
 
 //слушатель на кнопку редактирования данных профиля
 buttonEditProfile.addEventListener("click", () => {
@@ -124,7 +125,6 @@ const api = new Api({
 //вызываем метод getAllCards() (получить все карточки)
 const cards = api.getAllCards();
 cards.then(data => {
-
 //создаем карточку и добавляем ее на страницу
 function renderCard(item) {
   const cardElement = createCard(item);
@@ -140,3 +140,39 @@ const cardSection = new Section(
 cardSection.renderItems();
 })
 .catch((err) => {alert(err)});
+
+
+const user = new Api({
+  url: 'https://nomoreparties.co/v1/cohort-62/users/me',
+  headers: {
+    'content-type': 'application/json',
+    authorization: 'e31129f1-5493-4dd7-bb19-51cc3d3b29e6'
+  }
+})
+
+const myUserInfo = user.getUserInfo();
+myUserInfo.then(data => {
+  console.log(data)
+
+//создаем экземпляр класса, передаем в него селекторы html разметки
+const newUserInfo = new UserInfo({
+  profileNameSelector: ".profile-info__title",
+  descriptionSelector: ".profile-info__subtitle",
+  avatarSelector: '.avatar',
+  api: data
+});
+
+newUserInfo.setUserInfo();
+
+
+// //создаем экземпляр класса
+// const userInfo = new PopupWithForm(".popup_type_edit-profile", {
+//   callbackSubmitForm: (data) => {
+//     //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
+//     newUserInfo.setUserInfo(data);
+//   },
+// });
+
+})
+.catch((err) => {alert(err)});
+
