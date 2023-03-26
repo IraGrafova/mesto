@@ -71,7 +71,7 @@ imagePopup.setEventListeners();
 //   },
 // });
 
-//popupProfile.setEventListeners();
+// popupProfile.setEventListeners();
 
 //слушатель на кнопку редактирования данных профиля
 buttonEditProfile.addEventListener("click", () => {
@@ -124,7 +124,7 @@ const api = new Api({
 
 //вызываем метод getAllCards() (получить все карточки)
 const cards = api.getAllCards();
-cards.then(data => {
+cards.then(data => {console.log(data)
 //создаем карточку и добавляем ее на страницу
 function renderCard(item) {
   const cardElement = createCard(item);
@@ -142,6 +142,28 @@ cardSection.renderItems();
 .catch((err) => {alert(err)});
 
 
+//создаем экземпляр класса, передаем в него селекторы html разметки
+const newUserInfo = new UserInfo({
+  profileNameSelector: ".profile-info__title",
+  descriptionSelector: ".profile-info__subtitle",
+  avatarSelector: '.avatar',
+ // api: myUserInfo
+});
+
+//создаем экземпляр класса
+const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
+  callbackSubmitForm: (data) => {
+    //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
+    newUserInfo.setUserInfo(data);
+
+    console.log(data)
+
+  },
+});
+popupProfile.setEventListeners();
+
+
+
 const user = new Api({
   url: 'https://nomoreparties.co/v1/cohort-62/users/me',
   headers: {
@@ -152,26 +174,14 @@ const user = new Api({
 
 const myUserInfo = user.getUserInfo();
 myUserInfo.then(data => {
-  console.log(data)
-
-//создаем экземпляр класса, передаем в него селекторы html разметки
-const newUserInfo = new UserInfo({
-  profileNameSelector: ".profile-info__title",
-  descriptionSelector: ".profile-info__subtitle",
-  avatarSelector: '.avatar',
-  api: data
-});
-
-newUserInfo.setUserInfo();
+  // console.log(data)
 
 
-// //создаем экземпляр класса
-// const userInfo = new PopupWithForm(".popup_type_edit-profile", {
-//   callbackSubmitForm: (data) => {
-//     //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
-//     newUserInfo.setUserInfo(data);
-//   },
-// });
+
+newUserInfo.setUserInfo(data);
+
+
+
 
 })
 .catch((err) => {alert(err)});

@@ -43,10 +43,17 @@ export class Api {
     })
   }
 
-  editUserInfo() {
+  editUserInfo(data) {
     return fetch(this._url, {
       method: 'PATCH',
       headers: this._headers,
+      body: JSON.stringify(data),
+    })
+    .then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+      return Promise.reject('Произошла ошибка');
     })
   }
 
