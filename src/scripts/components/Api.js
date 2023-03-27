@@ -43,7 +43,9 @@ export class Api {
     })
   }
 
+  //данный метод вызывается в UserInfo _saveUserInfo({data})
   editUserInfo(data) {
+    console.log(data)
     return fetch(this._url, {
       method: 'PATCH',
       headers: this._headers,

@@ -124,7 +124,8 @@ const api = new Api({
 
 //вызываем метод getAllCards() (получить все карточки)
 const cards = api.getAllCards();
-cards.then(data => {console.log(data)
+cards.then(data => {
+  //console.log(data)
 //создаем карточку и добавляем ее на страницу
 function renderCard(item) {
   const cardElement = createCard(item);
@@ -142,20 +143,15 @@ cardSection.renderItems();
 .catch((err) => {alert(err)});
 
 
-//создаем экземпляр класса, передаем в него селекторы html разметки
-const newUserInfo = new UserInfo({
-  profileNameSelector: ".profile-info__title",
-  descriptionSelector: ".profile-info__subtitle",
-  avatarSelector: '.avatar',
- // api: myUserInfo
-});
+
 
 //создаем экземпляр класса
 const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
   callbackSubmitForm: (data) => {
     //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
-    newUserInfo.setUserInfo(data);
-
+    newUserInfo._saveUserInfo(data);
+    //newUserInfo.setUserInfo(data);
+//console.log(data)
     console.log(data)
 
   },
@@ -164,7 +160,7 @@ popupProfile.setEventListeners();
 
 
 
-const user = new Api({
+const userApi = new Api({
   url: 'https://nomoreparties.co/v1/cohort-62/users/me',
   headers: {
     'content-type': 'application/json',
@@ -172,17 +168,22 @@ const user = new Api({
   }
 })
 
-const myUserInfo = user.getUserInfo();
+const myUserInfo = userApi.getUserInfo();
 myUserInfo.then(data => {
   // console.log(data)
-
 
 
 newUserInfo.setUserInfo(data);
 
 
-
-
 })
 .catch((err) => {alert(err)});
 
+//создаем экземпляр класса, передаем в него селекторы html разметки
+const newUserInfo = new UserInfo({
+  profileNameSelector: ".profile-info__title",
+  descriptionSelector: ".profile-info__subtitle",
+  avatarSelector: '.avatar',
+  api: userApi
+});
+//console.log(userApi)
