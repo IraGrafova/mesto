@@ -7,7 +7,7 @@ export class UserInfo {
     //console.log(this._api) //получает объект, в котором нет тела и не на что заменять name, нужно подумать как реализовать вставку данных в запрос
   }
 
-_saveUserInfo(data) { //{name: 'Жак', description: 'Исследователь океана'}
+saveUserInfo(data) { //{name: 'Жак', description: 'Исследователь океана'}
   // console.log(this._api )
    //console.log(data)
   this._api
@@ -15,7 +15,7 @@ _saveUserInfo(data) { //{name: 'Жак', description: 'Исследовател�
     name: data.name,
     about: data.description
   })
-  .then(data => this.setUserInfo(data.name))
+  .then(data => this.setUserInfo(data))
   .catch((err) => console.log(err))
 }
 

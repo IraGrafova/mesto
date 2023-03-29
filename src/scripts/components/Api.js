@@ -17,7 +17,7 @@ export class Api {
     })
   }
 
-  addCard(data) {
+  saveCard(data) {
     return fetch(this._url, {
       method: 'POST',
       headers: this._headers,

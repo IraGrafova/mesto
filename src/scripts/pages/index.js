@@ -86,11 +86,28 @@ buttonEditProfile.addEventListener("click", () => {
 
 //добавление новых карточек
 
+
+
+//валидация форм
+const editProfileForm = new FormValidator(formValidationConfig, formEdit);
+editProfileForm.enableValidation();
+const addCardForm = new FormValidator(formValidationConfig, cardForm);
+addCardForm.enableValidation();
+
+
+
+
+
+
 //создаем экземпляр класса
 const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
   callbackSubmitForm: (inputValues) => {
     //callbackSubmitForm передает значения инпутов из PopupWithForm
     renderCard(inputValues);
+//console.log(inputValues)
+
+    //const cardElement = createCard(inputValues);
+    cardSection.saveNewCard(inputValues);
   },
 });
 
@@ -101,19 +118,27 @@ buttonAddCard.addEventListener("click", () => {
 
 popupAddCard.setEventListeners();
 
-//валидация форм
-const editProfileForm = new FormValidator(formValidationConfig, formEdit);
-editProfileForm.enableValidation();
-const addCardForm = new FormValidator(formValidationConfig, cardForm);
-addCardForm.enableValidation();
+  //функция создания новой карточки
+  function createCard(item) {
+    const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
+    return card.generateCard(); //возвращаем карточку наружу
+  }
 
-//функция создания новой карточки
-function createCard(item) {
-  const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
-  return card.generateCard(); //возвращаем карточку наружу
+//создаем карточку и добавляем ее на страницу
+function renderCard(item) {
+  const cardElement = createCard(item);
+  cardSection.addItem(cardElement);
 }
 
-//жкземпляр класса Api, передаем ему в качестве объекта адрес и токен
+// //создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+// const cardSection = new Section(
+//   { renderer: renderCard, api: api },
+//   elementsListSelector
+// );
+
+
+//экземпляр класса Api для работы с карточками
+// передаем ему в качестве объекта адрес и токен
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-62/cards',
   headers: {
@@ -122,44 +147,69 @@ const api = new Api({
   }
 });
 
+//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+const cardSection = new Section(
+  { renderer: renderCard, api: api },
+  elementsListSelector
+);
+
+
 //вызываем метод getAllCards() (получить все карточки)
 const cards = api.getAllCards();
 cards.then(data => {
   //console.log(data)
-//создаем карточку и добавляем ее на страницу
-function renderCard(item) {
-  const cardElement = createCard(item);
-  cardSection.addItem(cardElement);
-}
 
-//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
-const cardSection = new Section(
-  { items: data, renderer: renderCard },
-  elementsListSelector
-);
+// //создаем экземпляр класса
+// const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
+//   callbackSubmitForm: (inputValues) => {
+//     //callbackSubmitForm передает значения инпутов из PopupWithForm
+//     renderCard(inputValues);
+//   },
+// });
 
-cardSection.renderItems();
+// //слушатель на кнопку открытия попапа добавления карточек
+// buttonAddCard.addEventListener("click", () => {
+//   popupAddCard.open();
+// });
+
+// popupAddCard.setEventListeners();
+
+
+//   //функция создания новой карточки
+// function createCard(item) {
+//   const card = new Card({ data: item, handleCardClick }, "#to-do-element"); // Создадим экземпляр карточки
+//   return card.generateCard(); //возвращаем карточку наружу
+// }
+// //создаем карточку и добавляем ее на страницу
+// function renderCard(item) {
+//   const cardElement = createCard(item);
+//   cardSection.addItem(cardElement);
+// }
+
+// //создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+// const cardSection = new Section(
+//   { items: data, renderer: renderCard },
+//   elementsListSelector
+// );
+
+cardSection.renderItems(data);
 })
 .catch((err) => {alert(err)});
 
 
 
 
-//создаем экземпляр класса
+//создаем экземпляр класса для получения данных о User
 const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
   callbackSubmitForm: (data) => {
-    //callbackSubmitForm передает значения инпутов в метод setUserInfo класса UserInfo
-    newUserInfo._saveUserInfo(data);
-    //newUserInfo.setUserInfo(data);
-//console.log(data)
-    console.log(data)
-
+    //callbackSubmitForm передает значения инпутов в метод _saveUserInfo класса UserInfo
+    newUserInfo.saveUserInfo(data);
   },
 });
 popupProfile.setEventListeners();
 
 
-
+// экземпляр класса api
 const userApi = new Api({
   url: 'https://nomoreparties.co/v1/cohort-62/users/me',
   headers: {
@@ -168,14 +218,9 @@ const userApi = new Api({
   }
 })
 
-const myUserInfo = userApi.getUserInfo();
+const myUserInfo = userApi.getUserInfo(); // получчение данных о пользователе и добавление их на страницу
 myUserInfo.then(data => {
-  // console.log(data)
-
-
 newUserInfo.setUserInfo(data);
-
-
 })
 .catch((err) => {alert(err)});
 
