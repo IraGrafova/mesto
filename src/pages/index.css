@@ -17,6 +17,7 @@
 @import url(../blocks/profile-info/__subtitle/profile-info__subtitle.css);
 @import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
 @import url(../blocks/add-button/add-button.css);
+@import url(../blocks/button-edit-avatar/button-edit-avatar.css);
 
 @import url(../blocks/snapshots/snapshots.css);
 @import url(../blocks/elements/elements.css);
@@ -54,3 +55,4 @@
 @import url(../blocks/card-form/__input/_type/card-form__input_type_error.css);
 @import url(../blocks/error/error.css);
 @import url(../blocks/card-form/__save/_disabled/card-form__save_disabled.css);
+@import url(../blocks/card-form/__title/_type/card-form__title_type_avatar.css);

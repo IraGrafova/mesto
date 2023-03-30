@@ -8,6 +8,7 @@ import {
   buttonEditProfile,
   buttonAddCard,
   elementsListSelector,
+  buttonEditAvatar
 } from "../utils/constans.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
@@ -97,7 +98,14 @@ addCardForm.enableValidation();
 
 
 
-
+const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', {
+  callbackSubmitForm: (inputValues) => {
+    newUserInfo.editAvatar(inputValues);
+  }
+})
+buttonEditAvatar.addEventListener('click', () => {
+  popupEditAvatar.open();
+})
 
 //создаем экземпляр класса
 const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
@@ -107,7 +115,7 @@ const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
 //console.log(inputValues)
 
     //const cardElement = createCard(inputValues);
-    cardSection.saveNewCard(inputValues);
+    cardSection.saveNewCard(inputValues);  // вызываем сохранение карточки методом saveNewCard из класса Section
   },
 });
 

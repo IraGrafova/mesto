@@ -1,6 +1,6 @@
 export class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor({ data, handleCardClick }, templateSelector) {
+  constructor({ data, handleCardClick }, templateSelector) { //сюда нужно передать ID
     this._link = data.link;
     this._name = data.name;
     this._templateSelector = templateSelector;

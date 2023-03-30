@@ -20,11 +20,13 @@
     <main class="content">
       <section class="profile">
         <div class="profile-data">
+          <button class="button-edit-avatar" type="button">
           <img
             class="avatar"
             src="<%=require('./images/Avatar.jpg')%>"
             alt="Аватар пользователя"
           />
+          </button>
           <div class="profile-info">
             <div class="profile-info__name">
               <h1 class="profile-info__title"></h1>
@@ -131,6 +133,34 @@
           <img class="popup__image" />
           <figcaption class="popup__caption"></figcaption>
         </figure>
+      </div>
+    </div>
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__form">
+        <button
+          class="popup__close"
+          type="button"
+        ></button>
+        <form class="card-form" name="avatar-edit-form" id="avatar-edit-form">
+          <h2 class="card-form__title card-form__title_type_avatar">Обновить аватар</h2>
+          <input
+            class="card-form__input"
+            type="url"
+            name="link"
+            id="avatar-link"
+            placeholder="Ссылка на изображение"
+            required
+          />
+          <span class="error" id="avatar-error"></span>
+          <button
+            class="card-form__save card-form__save_disabled"
+            type="submit"
+            id="edit-avatar"
+            disabled
+          >
+            Сохранить
+          </button>
+        </form>
       </div>
     </div>
     <template id="to-do-element">

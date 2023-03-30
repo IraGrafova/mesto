@@ -40,6 +40,7 @@ const cardForm = document.forms["card-form"];
 //объявляем кнопки работы с попапами
 const buttonEditProfile = document.querySelector(".profile-info__edit-button");
 const buttonAddCard = document.querySelector(".add-button");
+const buttonEditAvatar = document.querySelector(".button-edit-avatar");
 
 //селектор куда вставляем карточки из темплейта
 const elementsListSelector = ".elements";
@@ -52,4 +53,5 @@ export {
   buttonEditProfile,
   buttonAddCard,
   elementsListSelector,
+  buttonEditAvatar
 };
