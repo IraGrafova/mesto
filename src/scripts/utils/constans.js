@@ -36,6 +36,7 @@ const formValidationConfig = {
 //находим формы
 const formEdit = document.forms["edit-profile-form"];
 const cardForm = document.forms["card-form"];
+const formAvatar = document.forms["avatar-edit-form"];
 
 //объявляем кнопки работы с попапами
 const buttonEditProfile = document.querySelector(".profile-info__edit-button");
@@ -50,6 +51,7 @@ export {
   formValidationConfig,
   formEdit,
   cardForm,
+  formAvatar,
   buttonEditProfile,
   buttonAddCard,
   elementsListSelector,

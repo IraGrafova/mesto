@@ -59,7 +59,8 @@ export class Api {
   }
 
   editAvatar(data) {
-    return fetch(this._url, {
+    console.log(data)
+    return fetch(`${this._url}/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),

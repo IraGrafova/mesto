@@ -5,6 +5,7 @@ import {
   formValidationConfig,
   formEdit,
   cardForm,
+  formAvatar,
   buttonEditProfile,
   buttonAddCard,
   elementsListSelector,
@@ -94,18 +95,23 @@ const editProfileForm = new FormValidator(formValidationConfig, formEdit);
 editProfileForm.enableValidation();
 const addCardForm = new FormValidator(formValidationConfig, cardForm);
 addCardForm.enableValidation();
+const editAvatarForm = new FormValidator(formValidationConfig, formAvatar);
+editAvatarForm.enableValidation();
 
 
 
 
 const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar', {
   callbackSubmitForm: (inputValues) => {
-    newUserInfo.editAvatar(inputValues);
+    newUserInfo.saveNewAvatar(inputValues);
+    //console.log(inputValues)
   }
 })
 buttonEditAvatar.addEventListener('click', () => {
   popupEditAvatar.open();
 })
+popupEditAvatar.setEventListeners();
+
 
 //создаем экземпляр класса
 const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
