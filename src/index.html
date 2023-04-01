@@ -23,7 +23,6 @@
           <button class="button-edit-avatar" type="button">
           <img
             class="avatar"
-            src="<%=require('./images/Avatar.jpg')%>"
             alt="Аватар пользователя"
           />
           </button>
@@ -165,7 +164,7 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_type_delete-card popup_is-opened">
+    <div class="popup popup_type_delete-card"> <!-- popup_is-opened-->
       <div class="popup__form">
         <button
           class="popup__close"
@@ -190,7 +189,10 @@
         </button>
         <div class="element__label">
           <h2 class="element__title"></h2>
-          <button class="element__button-like" type="button"></button>
+          <div class="element__like">
+            <button class="element__button-like" type="button"></button>
+            <span class="element__like-sum"></span>
+          </div>
         </div>
       </li>
     </template>

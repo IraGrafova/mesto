@@ -9,8 +9,8 @@ export class Section {
 
   //сохранить новую карточку, а потом добавить в DOM
   saveNewCard(data) {
-    console.log(data)
-    console.log(this._api)
+    // console.log(data)
+    // console.log(this._api)
     this._api
     .saveCard({//вызываем метод saveCard из класса Api
       name: data.name,

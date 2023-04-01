@@ -45,7 +45,7 @@ saveUserInfo(data) { //{name: 'Жак', description: 'Исследователь
     this._profileName.textContent = data.name;
     this._description.textContent = data.about;
     this._avatar.src = data.avatar;
-    console.log(this._avatar.src)
-    console.log(data.avatar)
+    // console.log(this._avatar.src)
+    //console.log(data)
   }
 }

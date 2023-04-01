@@ -5,7 +5,8 @@
   background-position: center;
   background-repeat: no-repeat;
   object-fit: contain;
-  width: 24px;
+  width: 22px;
+  height: 19px;
   cursor: pointer;
 }
 .element__button-like:hover {

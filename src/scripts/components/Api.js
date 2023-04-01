@@ -5,7 +5,7 @@ export class Api {
   }
 
   getAllCards() {
-   return fetch(this._url, {
+   return fetch(`${this._url}/cards`, {
       method: 'GET',
       headers: this._headers,
     })
@@ -18,7 +18,7 @@ export class Api {
   }
 
   saveCard(data) {
-    return fetch(this._url, {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(data)
@@ -31,7 +31,7 @@ export class Api {
   }
 
   getUserInfo() {
-    return fetch(this._url, {
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers,
     })
@@ -45,7 +45,7 @@ export class Api {
 
   //данный метод вызывается в UserInfo _saveUserInfo({data})
   editUserInfo(data) {
-    return fetch(this._url, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
@@ -59,11 +59,25 @@ export class Api {
   }
 
   editAvatar(data) {
-    console.log(data)
-    return fetch(`${this._url}/avatar`, {
+    //console.log(data)
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
+    })
+    .then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+      return Promise.reject('Произошла ошибка');
+    })
+  }
+
+  putLike(idCard) {
+    //console.log(data)
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
     })
     .then(res => {
       if(res.ok) {
