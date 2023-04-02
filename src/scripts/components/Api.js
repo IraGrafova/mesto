@@ -86,5 +86,19 @@ export class Api {
       return Promise.reject('Произошла ошибка');
     })
   }
+
+  removeLike (idCard) {
+    //console.log(data)
+    return fetch(`${this._url}/cards/${idCard}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+      return Promise.reject('Произошла ошибка');
+    })
+  }
 }
 

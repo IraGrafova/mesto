@@ -1,15 +1,16 @@
 export class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor({ data, handleCardClick }, templateSelector, profileID, api) { //сюда нужно передать ID
+  constructor({ data, handleCardClick, handleLikeClick }, templateSelector, profileID ) { //сюда нужно передать ID
     this._link = data.link;
     this._name = data.name;
-    this._cardID = data._id;
+    this._cardID = data._id; // id карточки
     this._userId = data.owner._id; // чужой id
     this._profileId = profileID; // мой id
     this._likesOnCard = data.likes; // все лайки карточки
     this._templateSelector = templateSelector;
-    this.handleCardClick = handleCardClick;
-    this._api = api;
+    this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
+
     //console.log(this._profileId)
 
     //находим данные попапа открытия карточек
@@ -17,8 +18,8 @@ export class Card {
     this._popupImageAlt = document.querySelector(".popup__image");
     this._popupImageCaption = document.querySelector(".popup__caption");
 
-    this._addLike = this._addLike.bind(this);
-    this._countLikes = this._countLikes.bind(this);
+    this._addLike = this.addLike.bind(this);
+    this._countLikes = this.countLikes.bind(this);
 
   }
 
@@ -43,8 +44,8 @@ export class Card {
     this._likeButton = this._element.querySelector(".element__button-like");
     this._card = this._element;
     this._likeCaption = this._element.querySelector(".element__like-sum");
-    this._countLikes();
-    //console.log(this._likeButton)
+    this.countLikes(this._likesOnCard);
+    //console.log(this._element)
     return this._element;
   }
 
@@ -53,7 +54,8 @@ export class Card {
     this._element
       .querySelector(".element__button-like")
       .addEventListener("click", () => {
-        this._handleLikeClick();
+        //console.log(this._cardID)
+        this._handleLikeClick(this._cardID);
       });
     this._element
       .querySelector(".element__trash")
@@ -73,38 +75,42 @@ export class Card {
   //   this._likeButton.classList.toggle("element__button-like_active");
   // }
 
-  _addLike() { //его тоже где-то нужно вызывать
+  addLike() { //его тоже где-то нужно вызывать
     this._likeButton.classList.add("element__button-like_active");
 
   }
 
-  _deleteLike() {
+  deleteLike() {
     this._likeButton.classList.remove("element__button-like_active");
   }
 
-  _countLikes() {
-    this._likeCaption.textContent =  this._likesOnCard.length;
-
-
-    if ( this._isCardLiked === true ) {
-this._addLike();
-//console.log(this._isCardLiked )
-    } else {this._deleteLike()}
+  countLikes(data) { //при put запросе запускается этот метод, пересчитывается длина массива likes и переключается состояние кнопки like
+this.likeArray = data;
+    this._likeCaption.textContent =  data.length; //принимает ответ с сервера и подставляет длину массива в текст контент лайков
+    // if ( this.isCardLiked === true ) {
+    //   this.addLike();
+      //console.log(data )
+    // } else {this.deleteLike()}
   }
 
-  _isCardLiked() {
-     return this._likesOnCard.some((item) => {
-     console.log(this._profileId)
-     console.log(item._id)
-      item._id === this._profileId});
+  isCardLiked() {
+     return this.likeArray.some((item) =>
+    //   console.log(this._likesOnCard)
+    //  console.log('мой id:' + this._profileId)
+    //   console.log('id:' + item._id)
+      item._id === this._profileId);
   }
 
-  _handleLikeClick() {
-    this._api
-    .putLike(this._cardID)
-    .then(this._countLikes)
-    .catch((err) => console.log(err))
-  }
+  // _likeStatus() {
+  //   if ()
+  // }
+
+  // _handleLikeClick() {
+  //   this._api
+  //   .putLike(this._cardID)
+  //   .then(this.countLikes)
+  //   .catch((err) => console.log(err))
+  // }
 
   _trashCard() {
     this._card.remove();

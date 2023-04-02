@@ -136,7 +136,27 @@ let profileID;
 
   //функция создания новой карточки
   function createCard(item) {
-    const card = new Card({ data: item, handleCardClick}, "#to-do-element", profileID, api ); // Создадим экземпляр карточки
+    const card = new Card({
+      data: item,
+      handleCardClick,
+      handleLikeClick: (id) => { console.log(card.isCardLiked())
+        if (card.isCardLiked()) {
+        api.removeLike(id) //сюда нужно передать id карточки
+        .then ((data) => {
+          //console.log(data)
+            card.deleteLike();
+            card.countLikes(data.likes);
+        }
+        )
+      } else {
+        api.putLike(id)
+        .then ((data) => {
+          card.addLike();
+          card.countLikes(data.likes);
+        })
+      }
+
+    }}, "#to-do-element", profileID ); // Создадим экземпляр карточки
     // card.likeCount();
     return card.generateCard(); //возвращаем карточку наружу
   }
