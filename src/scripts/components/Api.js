@@ -30,6 +30,18 @@ export class Api {
     })
   }
 
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(res => {
+      if(res.ok) {
+        return res.json();
+      }
+      return Promise.reject('Произошла ошибка');
+    })
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',

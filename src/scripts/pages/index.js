@@ -89,7 +89,6 @@ buttonEditProfile.addEventListener("click", () => {
 //добавление новых карточек
 
 
-
 //валидация форм
 const editProfileForm = new FormValidator(formValidationConfig, formEdit);
 editProfileForm.enableValidation();
@@ -113,15 +112,22 @@ buttonEditAvatar.addEventListener('click', () => {
 popupEditAvatar.setEventListeners();
 
 
+
+
 //создаем экземпляр класса
 const popupAddCard = new PopupWithForm(".popup_type_add-picture", {
-  callbackSubmitForm: (inputValues) => {
-    //callbackSubmitForm передает значения инпутов из PopupWithForm
-    renderCard(inputValues);
-//console.log(inputValues)
+  callbackSubmitForm: (inputValues) => { //callbackSubmitForm передает значения инпутов из PopupWithForm
+    popupAddCard.setButtonLoading('Сохранение...');
+api.saveCard(inputValues)
+.then((data) => {
+  renderCard(data);
+  //console.log(data)
+})
+.catch((err) => {alert(err)})
+.finally(() => {
+  popupAddCard.setButtonLoading('Создать');
+})
 
-    //const cardElement = createCard(inputValues);
-    cardSection.saveNewCard(inputValues);  // вызываем сохранение карточки методом saveNewCard из класса Section
   },
 });
 
@@ -136,10 +142,11 @@ let profileID;
 
   //функция создания новой карточки
   function createCard(item) {
+    //console.log(item)
     const card = new Card({
       data: item,
       handleCardClick,
-      handleLikeClick: (id) => { console.log(card.isCardLiked())
+      handleLikeClick: (id) => {
         if (card.isCardLiked()) {
         api.removeLike(id) //сюда нужно передать id карточки
         .then ((data) => {
@@ -154,9 +161,16 @@ let profileID;
           card.addLike();
           card.countLikes(data.likes);
         })
-      }
+      }},
+      handleDeleteClick: (id) => {
+        api.deleteCard(id)
+        .then((data) => {
+          card.trashCard();
+        })
 
-    }}, "#to-do-element", profileID ); // Создадим экземпляр карточки
+    },
+
+  }, "#to-do-element", profileID ); // Создадим экземпляр карточки
     // card.likeCount();
     return card.generateCard(); //возвращаем карточку наружу
   }
@@ -165,6 +179,7 @@ let profileID;
 function renderCard(item) {
   const cardElement = createCard(item);
   cardSection.addItem(cardElement);
+  //console.log('index171:' + item)
 }
 
 // //создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
@@ -184,22 +199,19 @@ const api = new Api({
   }
 });
 
-//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
-const cardSection = new Section(
-  { renderer: renderCard, api: api },
-  elementsListSelector
-);
+
 
 
 
 
 //вызываем метод getAllCards() (получить все карточки)
  const cards = api.getAllCards();
-// cards.then(data => {
-// cardSection.renderItems(data);
-// })
-// .catch((err) => {alert(err)});
 
+//создаем экземпляр класса и передаем в него функцию renderCard и селектор UL элемента страницы
+const cardSection = new Section(
+  { renderer: renderCard, api: api },
+  elementsListSelector
+);
 
 
 
@@ -233,7 +245,7 @@ const newUserInfo = new UserInfo({
 
 Promise.all([myUserInfo, cards])
   .then(([myUserInfo, cards]) => {
-    //console.log(data)
+    //console.log('cards' + cards)
     newUserInfo.setUserInfo(myUserInfo);
     profileID = myUserInfo._id;
 

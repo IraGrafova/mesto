@@ -1,15 +1,16 @@
 export class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor({ data, handleCardClick, handleLikeClick }, templateSelector, profileID ) { //сюда нужно передать ID
+  constructor({ data, handleCardClick, handleLikeClick, handleDeleteClick }, templateSelector, profileID ) {
     this._link = data.link;
     this._name = data.name;
     this._cardID = data._id; // id карточки
-    this._userId = data.owner._id; // чужой id
+    // this._userId = data.owner._id; // чужой id
     this._profileId = profileID; // мой id
     this._likesOnCard = data.likes; // все лайки карточки
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
 
     //console.log(this._profileId)
 
@@ -45,6 +46,7 @@ export class Card {
     this._card = this._element;
     this._likeCaption = this._element.querySelector(".element__like-sum");
     this.countLikes(this._likesOnCard);
+    this._likeStatus(); //отвечает за отображение лайка при перезагрузке (за черное сердечко)
     //console.log(this._element)
     return this._element;
   }
@@ -60,14 +62,14 @@ export class Card {
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        this._trashCard();
+        this._handleDeleteClick(this._profileId); //id карточки или id мой?
       });
 
     //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
     this._element
       .querySelector(".button-image")
       .addEventListener("click", (event) => {
-        this.handleCardClick(this._link, this._name);
+        this._handleCardClick(this._link, this._name);
       });
   }
 
@@ -85,12 +87,11 @@ export class Card {
   }
 
   countLikes(data) { //при put запросе запускается этот метод, пересчитывается длина массива likes и переключается состояние кнопки like
-this.likeArray = data;
+    this.likeArray = data;
     this._likeCaption.textContent =  data.length; //принимает ответ с сервера и подставляет длину массива в текст контент лайков
-    // if ( this.isCardLiked === true ) {
-    //   this.addLike();
+
       //console.log(data )
-    // } else {this.deleteLike()}
+
   }
 
   isCardLiked() {
@@ -101,9 +102,13 @@ this.likeArray = data;
       item._id === this._profileId);
   }
 
-  // _likeStatus() {
-  //   if ()
-  // }
+    _likeStatus() {
+    if (this.isCardLiked()) {
+      this.addLike();
+    } else {
+      this.deleteLike();
+    }
+  }
 
   // _handleLikeClick() {
   //   this._api
@@ -112,7 +117,7 @@ this.likeArray = data;
   //   .catch((err) => console.log(err))
   // }
 
-  _trashCard() {
+  trashCard() {
     this._card.remove();
     this._card = null;
   }

@@ -6,6 +6,7 @@ export class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     this._form = this._popup.querySelector(".card-form");
     this._inputs = this._form.querySelectorAll(".card-form__input");
+    this._saveButton = this._form.querySelector('.card-form__save');
   }
 
   //получить данные всех полей формы
@@ -40,5 +41,9 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  setButtonLoading(text) {
+    this._saveButton.textContent = text;
   }
 }
