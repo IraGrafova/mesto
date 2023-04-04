@@ -3,27 +3,27 @@ export class UserInfo {
     this._profileName = document.querySelector(data.profileNameSelector); //'.profile-info__title'
     this._description = document.querySelector(data.descriptionSelector); //'.profile-info__subtitle'
     this._avatar = document.querySelector(data.avatarSelector);
-   this._api = data.api;
+
   }
 
-  saveNewAvatar(data) {
-    this._api
-    .editAvatar(
-      {avatar: data.avatar}
-    )
-    .then(data => this.setUserInfo(data))
-    .catch((err) => console.log(err))
-  }
+  // saveNewAvatar(data) {
+  //   this._api
+  //   .editAvatar(
+  //     {avatar: data.avatar}
+  //   )
+  //   .then(data => this.setUserInfo(data))
+  //   .catch((err) => console.log(err))
+  // }
 
-saveUserInfo(data) { //{name: 'Жак', description: 'Исследователь океана'}
-  this._api
-  .editUserInfo({//вызываем метод editUserInfo из класса Api
-    name: data.name,
-    about: data.description
-  })
-  .then(data => this.setUserInfo(data))
-  .catch((err) => console.log(err))
-}
+// saveUserInfo(data) { //{name: 'Жак', description: 'Исследователь океана'}
+//   this._api
+//   .editUserInfo({//вызываем метод editUserInfo из класса Api
+//     name: data.name,
+//     about: data.description
+//   })
+//   .then(data => this.setUserInfo(data))
+//   .catch((err) => console.log(err))
+// }
 
   getUserInfo() {
     // собирает значения в объект

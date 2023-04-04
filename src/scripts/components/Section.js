@@ -1,9 +1,9 @@
 export class Section {
-  constructor({ renderer, api }, selector) { // items не нужен
+  constructor({ renderer }, selector) { // items не нужен
     //this._items = items;
     this._renderer = renderer;
     this._container = document.querySelector(selector);
-    this._api = api;
+
   }
 
 

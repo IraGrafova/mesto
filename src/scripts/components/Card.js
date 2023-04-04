@@ -4,7 +4,7 @@ export class Card {
     this._link = data.link;
     this._name = data.name;
     this._cardID = data._id; // id карточки
-    // this._userId = data.owner._id; // чужой id
+    this._userId = data.owner._id; // чужой id
     this._profileId = profileID; // мой id
     this._likesOnCard = data.likes; // все лайки карточки
     this._templateSelector = templateSelector;
@@ -19,9 +19,9 @@ export class Card {
     this._popupImageAlt = document.querySelector(".popup__image");
     this._popupImageCaption = document.querySelector(".popup__caption");
 
-    this._addLike = this.addLike.bind(this);
-    this._countLikes = this.countLikes.bind(this);
-
+    //this._addLike = this.addLike.bind(this);
+    // this._countLikes = this.countLikes.bind(this);
+    // this.deleteTrashButton
   }
 
   //получаем темплейт, клонируем, возвращаем карточку
@@ -45,9 +45,15 @@ export class Card {
     this._likeButton = this._element.querySelector(".element__button-like");
     this._card = this._element;
     this._likeCaption = this._element.querySelector(".element__like-sum");
+    this._trashButton = this._element.querySelector('.element__trash');
+
+
     this.countLikes(this._likesOnCard);
     this._likeStatus(); //отвечает за отображение лайка при перезагрузке (за черное сердечко)
     //console.log(this._element)
+    this.deleteTrashButton();
+
+
     return this._element;
   }
 
@@ -62,13 +68,15 @@ export class Card {
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        this._handleDeleteClick(this._profileId); //id карточки или id мой?
+        //console.log('card  '+this._cardID)
+        this._handleDeleteClick(this._cardID); //id карточки
+        //this._handleDeleteClick()
       });
 
     //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
     this._element
       .querySelector(".button-image")
-      .addEventListener("click", (event) => {
+      .addEventListener("click", () => {
         this._handleCardClick(this._link, this._name);
       });
   }
@@ -102,7 +110,7 @@ export class Card {
       item._id === this._profileId);
   }
 
-    _likeStatus() {
+   _likeStatus() {
     if (this.isCardLiked()) {
       this.addLike();
     } else {
@@ -110,16 +118,14 @@ export class Card {
     }
   }
 
-  // _handleLikeClick() {
-  //   this._api
-  //   .putLike(this._cardID)
-  //   .then(this.countLikes)
-  //   .catch((err) => console.log(err))
-  // }
-
   trashCard() {
     this._card.remove();
     this._card = null;
   }
 
+  deleteTrashButton() { //если айдишники не равны, то значит это не моя карточка и нужно удалить урну
+    if (this._profileId !== this._userId) {
+    this._trashButton.remove();
+  }
+  }
 }
