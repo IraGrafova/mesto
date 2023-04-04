@@ -1,10 +1,14 @@
 export class Card {
   //передаем в конструктор ссылку и имя карточки
-  constructor({ data, handleCardClick, handleLikeClick, handleDeleteClick }, templateSelector, profileID ) {
+  constructor(
+    { data, handleCardClick, handleLikeClick, handleDeleteClick },
+    templateSelector,
+    profileID
+  ) {
     this._link = data.link;
     this._name = data.name;
     this._cardID = data._id; // id карточки
-    this._userId = data.owner._id; // чужой id
+    this._userId = data.owner._id; // id создателя карточки
     this._profileId = profileID; // мой id
     this._likesOnCard = data.likes; // все лайки карточки
     this._templateSelector = templateSelector;
@@ -12,16 +16,10 @@ export class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
 
-    //console.log(this._profileId)
-
     //находим данные попапа открытия карточек
     this._popupImageSrc = document.querySelector(".popup__image");
     this._popupImageAlt = document.querySelector(".popup__image");
     this._popupImageCaption = document.querySelector(".popup__caption");
-
-    //this._addLike = this.addLike.bind(this);
-    // this._countLikes = this.countLikes.bind(this);
-    // this.deleteTrashButton
   }
 
   //получаем темплейт, клонируем, возвращаем карточку
@@ -45,14 +43,12 @@ export class Card {
     this._likeButton = this._element.querySelector(".element__button-like");
     this._card = this._element;
     this._likeCaption = this._element.querySelector(".element__like-sum");
-    this._trashButton = this._element.querySelector('.element__trash');
-
+    this._trashButton = this._element.querySelector(".element__trash");
 
     this.countLikes(this._likesOnCard);
     this._likeStatus(); //отвечает за отображение лайка при перезагрузке (за черное сердечко)
-    //console.log(this._element)
-    this.deleteTrashButton();
 
+    this.deleteTrashButton();
 
     return this._element;
   }
@@ -62,15 +58,12 @@ export class Card {
     this._element
       .querySelector(".element__button-like")
       .addEventListener("click", () => {
-        //console.log(this._cardID)
         this._handleLikeClick(this._cardID);
       });
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        //console.log('card  '+this._cardID)
         this._handleDeleteClick(this._cardID); //id карточки
-        //this._handleDeleteClick()
       });
 
     //при нажатии на карточку вызывается функция handleCardClick() из index.js, которая передает данные this._link, this._name в класс PopupWithImage, в классе PopupWithImage срабатывает логика присвоения в src и name попапа переданных данных
@@ -81,36 +74,28 @@ export class Card {
       });
   }
 
-  // _handleLikeClick() {
-  //   this._likeButton.classList.toggle("element__button-like_active");
-  // }
-
-  addLike() { //его тоже где-то нужно вызывать
+  addLike() {
     this._likeButton.classList.add("element__button-like_active");
-
   }
 
   deleteLike() {
     this._likeButton.classList.remove("element__button-like_active");
   }
 
-  countLikes(data) { //при put запросе запускается этот метод, пересчитывается длина массива likes и переключается состояние кнопки like
+  countLikes(data) {
+    //при put запросе запускается этот метод, пересчитывается длина массива likes и переключается состояние кнопки like
     this.likeArray = data;
-    this._likeCaption.textContent =  data.length; //принимает ответ с сервера и подставляет длину массива в текст контент лайков
-
-      //console.log(data )
-
+    this._likeCaption.textContent = data.length; //принимает ответ с сервера и подставляет длину массива в текст контент лайков
   }
 
   isCardLiked() {
-     return this.likeArray.some((item) =>
-    //   console.log(this._likesOnCard)
-    //  console.log('мой id:' + this._profileId)
-    //   console.log('id:' + item._id)
-      item._id === this._profileId);
+    return this.likeArray.some(
+      (item) =>
+        item._id === this._profileId
+    );
   }
 
-   _likeStatus() {
+  _likeStatus() {
     if (this.isCardLiked()) {
       this.addLike();
     } else {
@@ -123,13 +108,10 @@ export class Card {
     this._card = null;
   }
 
-  deleteTrashButton() { //если айдишники не равны, то значит это не моя карточка и нужно удалить урну
+  deleteTrashButton() {
+    //если айдишники не равны, то значит это не моя карточка и нужно удалить урну
     if (this._profileId !== this._userId) {
-    this._trashButton.remove();
+      this._trashButton.remove();
+    }
   }
-  }
-
-  // getCardId() {
-  //   return this._cardID;
-  // }
 }
