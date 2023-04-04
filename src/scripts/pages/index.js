@@ -139,6 +139,17 @@ buttonAddCard.addEventListener("click", () => {
 
 popupAddCard.setEventListeners();
 
+
+const popupDeleteCard = new PopupWithSubmit('.popup_type_delete-card', {functionWithSubmit: (card) => {
+  //console.log(card)
+api.deleteCard(card._cardID) //в кард ищем id карточки и передаем его в api
+     .then(() => {
+       card.trashCard();
+     })
+     .catch((err) => {alert(err)})
+}})
+
+
 let profileID;
 
   //функция создания новой карточки
@@ -166,22 +177,34 @@ let profileID;
       }
     },
 
-
       handleDeleteClick: (id) => {
-console.log('index before   ' + id)
-const popupDeleteCard = new PopupWithSubmit('.popup_type_delete-card', {
-  functionWithSubmit: () => {
-     console.log('index   '+id)
- api.deleteCard((id))
-        .then(() => {
-          card.trashCard();
-        })
-        .catch((err) => {alert(err)})
-  }
-})
-  popupDeleteCard.open();
-  popupDeleteCard.setEventListeners();
-  console.log(id)
+//console.log('index before   ' + id)
+
+popupDeleteCard.open(card)
+// card.trashCard()
+
+// popupDeleteCard.functionWithSubmit( () => {
+//   console.log('index   '+id)
+// api.deleteCard((id))
+//      .then(() => {
+//        card.trashCard();
+//      })
+//      .catch((err) => {alert(err)})
+// })
+
+// const popupDeleteCard = new PopupWithSubmit('.popup_type_delete-card', {
+//   functionWithSubmit: () => {
+//      console.log('index   '+id)
+//  api.deleteCard((id))
+//         .then(() => {
+//           card.trashCard();
+//         })
+//         .catch((err) => {alert(err)})
+//   }
+// })
+  // popupDeleteCard.open();
+
+  //console.log(id)
 
     },
 
@@ -189,6 +212,7 @@ const popupDeleteCard = new PopupWithSubmit('.popup_type_delete-card', {
     // card.likeCount();
     return card.generateCard(); //возвращаем карточку наружу
   }
+  popupDeleteCard.setEventListeners();
 
 //создаем карточку и добавляем ее на страницу
 function renderCard(item) {

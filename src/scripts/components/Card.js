@@ -128,4 +128,8 @@ export class Card {
     this._trashButton.remove();
   }
   }
+
+  // getCardId() {
+  //   return this._cardID;
+  // }
 }
