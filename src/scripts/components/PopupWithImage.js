@@ -3,8 +3,8 @@ import { Popup } from "./Popup.js";
 export class PopupWithImage extends Popup {
   constructor(popup) {
     super(popup);
-    this._popupImageSrc = document.querySelector(".popup__image");
-    this._popupImageName = document.querySelector(".popup__caption");
+    this._popupImageSrc = this._popup.querySelector(".popup__image");
+    this._popupImageName = this._popup.querySelector(".popup__caption");
   }
 
   //метод получает данные link и name из класса Card с помощью функции handleCardClick(link, name)

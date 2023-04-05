@@ -3,16 +3,19 @@ export class Api {
     this._url = config.url;
     this._headers = config.headers;
   }
+  _getResponseData(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
 
   getAllCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -22,10 +25,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -34,10 +34,7 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -46,10 +43,7 @@ export class Api {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -59,10 +53,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -72,10 +63,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -84,10 +72,7 @@ export class Api {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 
@@ -96,10 +81,7 @@ export class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject("Произошла ошибка");
+      return this._getResponseData(res);
     });
   }
 }

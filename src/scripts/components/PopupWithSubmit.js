@@ -19,7 +19,6 @@ export class PopupWithSubmit extends Popup {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._functionWithSubmit(this._id, this._card); //здесь логика удаления
-      this.close();
     });
   }
 }
