@@ -80,9 +80,9 @@ buttonAddCard.addEventListener("click", () => {
 popupAddCard.setEventListeners();
 
 const popupDeleteCard = new PopupWithSubmit(".popup_type_delete-card", {
-  functionWithSubmit: (card) => {
+  functionWithSubmit: (id, card) => {
     api
-      .deleteCard(card._cardID) //в кард ищем id карточки и передаем его в api
+      .deleteCard(id) //в кард ищем id карточки и передаем его в api
       .then(() => {
         card.trashCard();
       })
@@ -125,7 +125,8 @@ function createCard(item) {
       },
 
       handleDeleteClick: (id) => {
-        popupDeleteCard.open(card);
+        console.log(id, card)
+        popupDeleteCard.open(id, card);
       },
     },
     "#to-do-element",
