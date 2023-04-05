@@ -33,7 +33,7 @@
 /*!******************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/avatar/avatar.css ***!
   \******************************************************************************************************************************************************/
-.avatar{height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
+.avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
 /*!******************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/profile-info/profile-info.css ***!
   \******************************************************************************************************************************************************************/
@@ -58,6 +58,10 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/add-button/add-button.css ***!
   \**************************************************************************************************************************************************************/
 .add-button{background-color:#000;background-image:url(images/Add-Button.54b1426515811a15ebaf.svg);background-position:50%;background-repeat:no-repeat;border:2px solid #fff;border-radius:2px;cursor:pointer;height:50px;margin:0;padding:0;width:100%}.add-button:hover{opacity:.6}@media (min-width:425px){.add-button{background-size:22px;height:50px;width:150px}}
+/*!******************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/button-edit-avatar/button-edit-avatar.css ***!
+  \******************************************************************************************************************************************************************************/
+.button-edit-avatar{background-color:transparent;border:none;height:120px;padding:0;position:relative;width:120px}.button-edit-avatar:before{background:url(images/edit-avatar.ae1a976ddb506239e9f0.svg) rgba(0,0,0,.8);background-position:50%;background-repeat:no-repeat;background-size:26px 26px;content:"";height:120px;left:0;opacity:0;position:absolute;top:0;width:120px;z-index:1}.button-edit-avatar:hover:before{cursor:pointer;opacity:1}
 /*!************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/snapshots/snapshots.css ***!
   \************************************************************************************************************************************************************/
@@ -86,14 +90,22 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__title/element__title.css ***!
   \***********************************************************************************************************************************************************************/
 .element__title{font-family:Inter,Arial,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:90%;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
+/*!*********************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__like/element__like.css ***!
+  \*********************************************************************************************************************************************************************/
+.element__like{display:flex;flex-direction:column}
 /*!***********************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__button-like/element__button-like.css ***!
   \***********************************************************************************************************************************************************************************/
-.element__button-like{background-color:#fff;background-image:url(images/like.87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;-o-object-fit:contain;object-fit:contain;width:24px}.element__button-like:hover{opacity:.5}.element__button-like:active{background-image:url(images/like-active.fe17a515669479b1e649.svg);opacity:1}
+.element__button-like{background-color:#fff;background-image:url(images/like.87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;height:19px;-o-object-fit:contain;object-fit:contain;width:22px}.element__button-like:hover{opacity:.5}.element__button-like:active{background-image:url(images/like-active.fe17a515669479b1e649.svg);opacity:1}
 /*!**************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__button-like/_active/element__button-like_active.css ***!
   \**************************************************************************************************************************************************************************************************/
 .element__button-like_active{background-image:url(images/like-active.fe17a515669479b1e649.svg);opacity:1}
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/element/__like-sum/element__like-sum.css ***!
+  \*****************************************************************************************************************************************************************************/
+.element__like-sum{color:#000;font-family:Inter,Arial,sans-serif;font-size:13px;font-style:normal;font-weight:400;line-height:16px;margin-top:3px;text-align:center}
 /*!******************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/button-image/button-image.css ***!
   \******************************************************************************************************************************************************************/
@@ -117,7 +129,7 @@
 /*!*****************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/__form/popup__form.css ***!
   \*****************************************************************************************************************************************************************/
-.popup__form{background-color:#fff;border-radius:10px;margin:0 auto;min-width:282px;position:relative}@media (min-width:1280px){.popup__form{width:430px}}
+.popup__form{background-color:#fff;border-radius:10px;margin:0 auto;position:relative;width:282px}@media (min-width:1280px){.popup__form{width:430px}}
 /*!*********************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/__form-picture/popup__form-picture.css ***!
   \*********************************************************************************************************************************************************************************/
@@ -133,7 +145,7 @@
 /*!***************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__title/card-form__title.css ***!
   \***************************************************************************************************************************************************************************/
-.card-form__title{font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:900;line-height:22px;margin-bottom:75px;margin-top:25px;max-width:358px;padding:0;width:84%}@media (min-width:1280px){.card-form__title{align-self:flex-start;font-size:24px;line-height:29px;margin-bottom:44px;margin-left:36px;margin-top:34px}}
+.card-form__title{font-family:Inter,Arial,sans-serif;font-size:18px;font-style:normal;font-weight:900;line-height:22px;margin-bottom:73px;margin-top:25px;max-width:358px;padding:0;width:84%}@media (min-width:1280px){.card-form__title{align-self:flex-start;font-size:24px;line-height:29px;margin-bottom:44px;margin-left:36px;margin-top:34px}}
 /*!***************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__input/card-form__input.css ***!
   \***************************************************************************************************************************************************************************/
@@ -141,7 +153,7 @@
 /*!*************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__save/card-form__save.css ***!
   \*************************************************************************************************************************************************************************/
-.card-form__save{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-family:Inter,Arial,sans-serif;font-size:14px;font-style:normal;height:46px;line-height:17px;margin-bottom:25px;margin-top:7px;padding:0;width:84%}.card-form__save:hover{opacity:.8}@media (min-width:1280px){.card-form__save{font-size:18px;height:50px;line-height:22px;margin-bottom:37px;width:358px}}
+.card-form__save{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-family:Inter,Arial,sans-serif;font-size:14px;font-style:normal;height:46px;line-height:17px;margin-bottom:25px;margin-top:7px;padding:0;width:84%}.card-form__save:hover{opacity:.8}@media (min-width:1280px){.card-form__save{font-size:18px;height:50px;line-height:22px;margin-bottom:34px;width:358px}}
 /*!******************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/popup/__close/_type/popup__close_type_add-picture.css ***!
   \******************************************************************************************************************************************************************************************/
@@ -190,6 +202,14 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__save/_disabled/card-form__save_disabled.css ***!
   \********************************************************************************************************************************************************************************************/
 .card-form__save_disabled{background:#fff;border:1px solid #000;color:#000;opacity:.2}
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__title/_type/card-form__title_type_avatar.css ***!
+  \*********************************************************************************************************************************************************************************************/
+.card-form__title_type_avatar{margin-bottom:30px}@media (min-width:1280px){.card-form__title{margin-bottom:44px}}
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/blocks/card-form/__title/_type/card-form__title_type_delete-card.css ***!
+  \**************************************************************************************************************************************************************************************************/
+.card-form__title_type_delete-card{margin-bottom:31px}
 /*!*********************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/index.css ***!
   \*********************************************************************************************************************************************/

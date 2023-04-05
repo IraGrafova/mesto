@@ -8,7 +8,7 @@
     <meta name="keywords" content="html, css, javascript" />
     <meta name="author" content="Irina Grafova" />
     <title>Место</title>
-  <script defer src="main.c5567ec12b47471d48ba.js"></script><link href="main.css" rel="stylesheet"></head>
+  <script defer src="main.d50a3aadb71e0e000160.js"></script><link href="main.css" rel="stylesheet"></head>
   <body class="page">
     <header class="header">
       <img
@@ -20,17 +20,15 @@
     <main class="content">
       <section class="profile">
         <div class="profile-data">
-          <img
-            class="avatar"
-            src="images/Avatar.3aa42245ebd9a91a9d77.jpg"
-            alt="Аватар пользователя"
-          />
+          <button class="button-edit-avatar" type="button">
+            <img class="avatar" alt="Аватар пользователя" />
+          </button>
           <div class="profile-info">
             <div class="profile-info__name">
-              <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+              <h1 class="profile-info__title"></h1>
               <button class="profile-info__edit-button" type="button"></button>
             </div>
-            <p class="profile-info__subtitle">Исследователь океана</p>
+            <p class="profile-info__subtitle"></p>
           </div>
         </div>
         <button class="add-button" type="button"></button>
@@ -133,6 +131,46 @@
         </figure>
       </div>
     </div>
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__form">
+        <button class="popup__close" type="button"></button>
+        <form class="card-form" name="avatar-edit-form" id="avatar-edit-form">
+          <h2 class="card-form__title card-form__title_type_avatar">
+            Обновить аватар
+          </h2>
+          <input
+            class="card-form__input"
+            type="url"
+            name="avatar"
+            id="avatar-link"
+            placeholder="Ссылка на изображение"
+            required
+          />
+          <span class="error" id="avatar-link-error"></span>
+          <button
+            class="card-form__save card-form__save_disabled"
+            type="submit"
+            id="edit-avatar"
+            disabled
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_delete-card">
+      <div class="popup__form">
+        <button class="popup__close" type="button"></button>
+        <form class="card-form" name="delete-card-form" id="delete-card-form">
+          <h2 class="card-form__title card-form__title_type_delete-card">
+            Вы уверены?
+          </h2>
+          <button class="card-form__save" type="submit" id="delete-card">
+            Да
+          </button>
+        </form>
+      </div>
+    </div>
     <template id="to-do-element">
       <li class="element">
         <button class="element__trash"></button>
@@ -141,7 +179,10 @@
         </button>
         <div class="element__label">
           <h2 class="element__title"></h2>
-          <button class="element__button-like" type="button"></button>
+          <div class="element__like">
+            <button class="element__button-like" type="button"></button>
+            <span class="element__like-sum"></span>
+          </div>
         </div>
       </li>
     </template>
