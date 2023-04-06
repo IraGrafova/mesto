@@ -165,7 +165,8 @@ const popupProfile = new PopupWithForm(".popup_type_edit-profile", {
       .editUserInfo({ name: data.name, about: data.description })
       .then((data) => {
         popupProfile.close();
-        newUserInfo.setUserInfo(data)})
+        newUserInfo.setUserInfo(data);
+      })
       .catch((err) => console.log(err))
       .finally(() => {
         popupProfile.setButtonLoading("Сохранить");
@@ -183,7 +184,8 @@ const popupEditAvatar = new PopupWithForm(".popup_type_edit-avatar", {
       .editAvatar({ avatar: inputValues.avatar })
       .then((data) => {
         popupEditAvatar.close();
-        newUserInfo.setUserInfo(data)})
+        newUserInfo.setUserInfo(data);
+      })
       .catch((err) => console.log(err))
       .finally(() => {
         popupEditAvatar.setButtonLoading("Сохранить");
